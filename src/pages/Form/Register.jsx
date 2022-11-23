@@ -13,7 +13,7 @@ const Register = () => {
       const onLogin = (data) => console.log(data);
     
       return (
-        <div className="flex justify-center items-center mt-12">
+        <div className="flex justify-center items-center mt-5">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -58,19 +58,24 @@ const Register = () => {
               {...register("password")}
             />
             <p>{errors.password?.message}</p>
+                </div>
+                {/* select */}
+                
+                <div className="">
+                <select {...register("position")} className="select select-bordered w-full">
+  <option disabled selected>Join as</option>
+  <option>Buyer</option>
+  <option>Seller</option>
+</select>
           </div>
-    
-          <input
-            className="w-full text-white transition bg-gray-900 pointer hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            type="submit"
-          />
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+          <button type="submit" className="w-full text-white transition bg-gray-900 pointer hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Register</button>
+          <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Already have an account yet?{" "}
             <Link
-              to="/register"
+              to="/login"
               className="font-medium text-primary-600 hover:underline dark:text-primary-500 pointer"
             >
-              Register
+              Login
             </Link>
           </p>
               </form>

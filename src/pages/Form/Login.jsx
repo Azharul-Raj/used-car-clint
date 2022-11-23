@@ -46,15 +46,12 @@ const Login = () => {
         />
         <p>{errors.age?.message}</p>
       </div>
-
-      <input
-        className="w-full text-white transition bg-gray-900 pointer hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-        type="submit"
-      />
-      <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+        <button type="submit" className="w-full text-white transition bg-gray-900 pointer hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+      
+      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
         Don’t have an account yet?{" "}
         <Link
-          to="/"
+          to="/register"
           className="font-medium text-primary-600 hover:underline dark:text-primary-500 pointer"
         >
           Sign up
