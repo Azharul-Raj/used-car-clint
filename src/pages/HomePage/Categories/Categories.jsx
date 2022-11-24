@@ -1,0 +1,33 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import React from 'react';
+import Category from './Category';
+import SpinnerMedium from '../../../components/SpinnerMedium'
+
+const Categories = () => {
+    const { data: categories = [],isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await axios.get('/categories'); 
+            return res.data
+        }
+    })
+    console.log(categories);
+    if (isLoading) {
+        return <SpinnerMedium/>
+    }
+    return (
+        <div className='my-10'>
+            <div className="">
+                <h4 className='text-center text-white text-4xl divider'>Categories</h4>
+            </div>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-3 place-items-center'>
+            {
+                categories?.map(category => <Category key={category._id} category={ category} />)
+            }
+            </div>
+            </div>
+    );
+};
+
+export default Categories;
