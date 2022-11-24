@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { bookCar } from '../../../Utilities/BookCar';
 
 const BookingModal = ({ product }) => {
     const { user } = useContext(AuthContext);
-    const { name, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified } = product;
+    const { _id,name, sellerName, brand, sale_price } = product;
    
     const handleBooking = e => {
         e.preventDefault()
@@ -15,16 +16,27 @@ const BookingModal = ({ product }) => {
         const price = form.price.value;
         const phone = form.phone.value;
         const location = form.location.value;
-        console.log(name,email,carName,price,phone ,location);
+        const bookingInfo = {
+            name,
+            email,
+            carId:_id,
+            sellerName,
+            brand,
+            carName,
+            price,
+            phone,
+            meetingLocation:location
+        }
+        bookCar(bookingInfo);        
     }
     return (
         <div>
-            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <input type="checkbox" id="booking-modal" className="modal-toggle" />
 <div className="modal">
                 <div className="modal-box">
                     <div className="flex justify-between mb-8">
                         <h3 className="font-bold text-lg">Book {name} of {brand} Brand</h3>
-                        <label htmlFor="my-modal" className="btn btn-sm bg-black text-white btn-circle absolute right-2 top-2">✕</label>
+                        <label htmlFor="booking-modal" className="btn btn-sm bg-black text-white btn-circle absolute right-2 top-2">✕</label>
                     </div>
                     <div className="">
                     <form onSubmit={(e)=>handleBooking(e)}>
@@ -35,7 +47,7 @@ const BookingModal = ({ product }) => {
                     <input type="text" name='phone' placeholder="Your Phone Number" className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
                     <input type="text" name='location' placeholder="Meeting Location" className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
                             <div className="modal-action mt-[-4px]">
-                                <button htmlFor="my-modal" className='btn w-full' type='submit'><label htmlFor="my-modal" className="btn w-full">Book Now</label>
+                                <button htmlFor="booking-modal" className='btn w-full' type='submit'><label htmlFor="my-modal" className="btn w-full">Book Now</label>
 </button>
                                 
                             </div>

@@ -3,6 +3,7 @@ import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
 import Products from "../pages/Products/Products";
+import DashboardLayout from "./DashboardLayout/DashboardLayout";
 import Main from "./Main/Main";
 
 export const route = createBrowserRouter([
@@ -26,6 +27,15 @@ export const route = createBrowserRouter([
             {
                 path: '/login',
                 element:<Login/>
+            },
+            {
+                path: '/dashboard',
+                element: <DashboardLayout />,
+                children: [
+                    {
+        
+                    }
+                ]
             }
         ]
     }

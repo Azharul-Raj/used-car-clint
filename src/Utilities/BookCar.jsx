@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const bookCar = (info) => {
     fetch('http://localhost:3001/orders', {
         method: "POST",
@@ -8,6 +10,11 @@ export const bookCar = (info) => {
     })
         .then(res => res.json())
         .then(data => {
-        console.log(data);
+            console.log(data);
+            Swal.fire(
+                'Thank You!',
+                'Car booked successfully!',
+                'success'
+              )
     })
 }

@@ -42,7 +42,7 @@ const Product = ({ product }) => {
                 </div>
     </div>
             {/* <button className='w-full btn'>Book Now</button> */}
-            <label htmlFor="my-modal" className="btn w-full bg-gray-900">Book Now</label>
+            <label htmlFor="booking-modal" className="btn w-full bg-gray-900">Book Now</label>
 
             </div>
             {
