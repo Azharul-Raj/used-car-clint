@@ -1,23 +1,36 @@
+
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import SpinnerMedium from '../../components/SpinnerMedium';
+import Product from './Product';
 
 const Products = () => {
-    const id = useParams();
-    const data=useLoaderData()
-    const { data: products = [] } = useQuery({
-        queryKey: ['products'],
-        queryFn: async () =>{const res= await axios.get(`/category/${id}`);
-            return res.data;
+    // const products = useLoaderData()
+    const {id}=useParams()
+    const { data: products = [],isLoading } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async() => {
+            const res=  await fetch(`http://localhost:3001/category/${id}`)
+            const data = res.json();
+            return data;
         }
+        
     })
-    console.log(id, products);
-    console.log(data);
+    if (isLoading) {
+        return <div className="">
+                        <SpinnerMedium/>
+                    </div>
+    }
+    console.log(typeof id);
     return (
-        <div>
-            
-        </div>
+        
+                    <div className="">
+                        {
+                            products?.map(product=><Product key={product._id} product={product}/>)
+                        }
+                    </div>
+                    
     );
 };
 
