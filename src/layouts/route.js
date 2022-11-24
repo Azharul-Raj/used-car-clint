@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
+import Wishlist from "../pages/Dashboard/MyOrders/Wishlist";
 import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
@@ -33,7 +35,12 @@ export const route = createBrowserRouter([
                 element: <DashboardLayout />,
                 children: [
                     {
-        
+                        path: '/dashboard',
+                        element:<MyOrders/>
+                    },
+                    {
+                        path: '/dashboard/wishlist',
+                        element:<Wishlist/>
                     }
                 ]
             }
