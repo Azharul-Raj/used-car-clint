@@ -1,11 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ product }) => {
     const { user } = useContext(AuthContext);
     const { name, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified } = product;
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+   
+    const handleBooking = e => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const carName = form.carName.value;
+        const price = form.price.value;
+        const phone = form.phone.value;
+        const location = form.location.value;
+        console.log(name,email,carName,price,phone ,location);
+    }
     return (
         <div>
             <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -15,9 +26,20 @@ const BookingModal = ({ product }) => {
                         <h3 className="font-bold text-lg">Book {name} of {brand} Brand</h3>
                         <label htmlFor="my-modal" className="btn btn-sm bg-black text-white btn-circle absolute right-2 top-2">✕</label>
                     </div>
-                    <input type="text" {...register('name')} className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
-    <div className="modal-action">
-      <label htmlFor="my-modal" className="btn">Yay!</label>
+                    <div className="">
+                    <form onSubmit={(e)=>handleBooking(e)}>
+                    <input type="text" disabled name='name'  defaultValue={user?.displayName} className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                    <input type="text" disabled name='email' defaultValue={user?.email} className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                    <input type="text" disabled name='carName' defaultValue={name} className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                    <input type="text" disabled name='price' defaultValue={sale_price +'$K'} className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                    <input type="text" name='phone' placeholder="Your Phone Number" className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                    <input type="text" name='location' placeholder="Meeting Location" className="input mb-4 border-gray-100 input-bordered input-md w-full" id="" />
+                            <div className="modal-action mt-[-4px]">
+                                <button htmlFor="my-modal" className='btn w-full' type='submit'><label htmlFor="my-modal" className="btn w-full">Book Now</label>
+</button>
+                                
+                            </div>
+                                </form>
     </div>
   </div>
 </div>

@@ -1,16 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import googleLogo from '../../assets/google.svg';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { addUser } from '../../Utilities/AddUser';
 
 const Register = () => {
+  const {  emailSignUp,updateInfo,googleSignIn } = useContext(AuthContext);
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
       } = useForm();
-      const onLogin = (data) => console.log(data);
+  const onLogin = (data) => {
+    console.log(data);
+    const name = data.name;
+    const role = data.role;
+    const email = data.email;
+    const password = data.password;
+    emailSignUp(email,password)
+      .then(result => {
+        const profile = result.user;
+        console.log(profile);
+        updateInfo(name);
+        const userInfo = {
+          name,
+          role,
+          email
+        }
+        addUser(userInfo);
+        
+      })
+    .catch(err=>toast.error(err.message))
+
+  }
+  // google signIn function
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(result => {
+        const profile = result.user;
+        const userInfo = {
+          name: profile.displayName,
+          role:"Buyer",
+          email:profile.email
+        }
+        addUser(userInfo);
+        console.log(profile);
+        toast.success('user created')
+    })
+  }
     
       return (
         <div className="flex justify-center items-center mt-5">
@@ -62,7 +102,7 @@ const Register = () => {
                 {/* select */}
                 
                 <div className="">
-                <select {...register("position")} className="select select-bordered w-full">
+                <select {...register("role")} className="select select-bordered w-full">
   <option disabled selected>Join as</option>
   <option>Buyer</option>
   <option>Seller</option>
@@ -80,7 +120,7 @@ const Register = () => {
           </p>
               </form>
               <div className="text-center">
-              <button type="button" className="text-white transition bg-gray-900  hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 flex  justify-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 w-full">             
+              <button onClick={handleGoogleSignIn} type="button" className="text-white transition bg-gray-900  hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 flex  justify-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 w-full">             
                   <img className="h-6 mr-2" src={googleLogo} alt="" />
       Sign in with Google
     </button>
