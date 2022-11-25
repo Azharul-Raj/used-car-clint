@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { bookCar } from "../../../Utilities/BookCar";
 
-const BookingModal = ({ product }) => {
+const BookingModal = ({ bookItem,setBookItem }) => {
   const { user } = useContext(AuthContext);
-  const { _id, name, sellerName, brand, sale_price } = product;
+  const { _id, name, sellerName, brand, sale_price } = bookItem;
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -29,7 +28,13 @@ const BookingModal = ({ product }) => {
       meetingLocation: location,
     };
     bookCar(bookingInfo);
+    setBookItem(null);
   };
+  // handle close function
+  const handleClose = () => {
+    setBookItem(null);
+  }
+
   return (
     <div>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -40,6 +45,7 @@ const BookingModal = ({ product }) => {
               Book {name} of {brand} Brand
             </h3>
             <label
+              onClick={handleClose}
               htmlFor="booking-modal"
               className="btn btn-sm bg-black text-white btn-circle absolute right-2 top-2"
             >

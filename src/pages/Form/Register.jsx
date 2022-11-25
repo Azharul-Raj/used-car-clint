@@ -103,7 +103,7 @@ const Register = () => {
                 
                 <div className="">
                 <select {...register("role")} className="select select-bordered w-full">
-  <option disabled selected>Join as</option>
+  <option disabled selected>User</option>
   <option>Buyer</option>
   <option>Seller</option>
 </select>

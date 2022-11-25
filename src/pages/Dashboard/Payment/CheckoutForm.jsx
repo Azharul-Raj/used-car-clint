@@ -2,10 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import SmallSpinner from "../../../components/SmallSpinner";
 import { addPayment } from "../../../Utilities/AddPayment";
 
 const CheckoutForm = ({ order }) => {
-  const { _id, sellerName, price, name, email } = order;
+  const { _id, sellerName, price,carName, name, email } = order;
   // states
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState();
@@ -43,7 +44,8 @@ const CheckoutForm = ({ order }) => {
         text: `${error.message}`,
       });
     }
-    const { paymentIntent, error: paymentError } = stripe.confirmCardPayment(
+    console.log(clientSecret);
+    const { paymentIntent, error: paymentError } =await stripe.confirmCardPayment(
       clientSecret,
       {
         payment_method: {
@@ -54,22 +56,27 @@ const CheckoutForm = ({ order }) => {
           },
         },
       }
-    );
-
-    if (paymentIntent === "succeeded") {
+      );
+      console.log(paymentIntent);
+    if (paymentIntent.status === "succeeded") {
       const payment = {
         buyerName: name,
         productID: _id,
+        productName:carName,
         sellerName,
         transactionID: paymentIntent.id,
         buyerEmail: email,
         };
-        addPayment(payment);
+      addPayment(payment);
+      Swal.fire('Payment Success!',
+      'Check out your order!',
+      'success')
       setProcessing(false);
     }
     if (paymentError) {
       toast.error(paymentError.message);
     }
+    console.log('last');
   };
   return (
     <form className="text-white mt-10" onSubmit={handlePayment}>
@@ -89,8 +96,8 @@ const CheckoutForm = ({ order }) => {
         },
       }}
       />
-      <button className="w-full btn btn-sm mt-5" type="submit" disabled={!stripe || !elements}>
-        Pay
+      <button className="w-full btn btn-sm mt-5 text-white" type="submit" disabled={!stripe || !elements}>
+        {processing?<SmallSpinner></SmallSpinner> :'Pay'}
       </button>
     </form>
   );

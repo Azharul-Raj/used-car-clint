@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import car from '../../assets/car.jpg';
-import { FaCar,FaMapMarkerAlt,FaMoneyCheckAlt,FaMoneyCheck } from "react-icons/fa";
-import BookingModal from './BookingModal/BookingModal';
+import { FaCar,FaMapMarkerAlt } from "react-icons/fa";
 
-const Product = ({ product }) => {
-    console.log(product);
-    const [data,setData]=useState(product)
-    const { name, sellerName,image, brand,poste_date,original_price,sale_price,used,location,condition,desc,isVerified } = product;
+const Product = ({ product, setBookItem }) => {
+    const { name, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified,isSold } = product;
+    const handleBook = (item) => {
+        setBookItem(item);        
+    }
     return (
         <>
         <div className="w-[96%] mx-auto my-5 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -42,12 +41,10 @@ const Product = ({ product }) => {
                 </div>
     </div>
             {/* <button className='w-full btn'>Book Now</button> */}
-            <label htmlFor="booking-modal" className="btn w-full bg-gray-900">Book Now</label>
+            <label onClick={()=>handleBook(product)} htmlFor="booking-modal" disabled={isSold===true} className="btn w-full bg-gray-900">{isSold?'BOOKED':'Book Now'}</label>
 
             </div>
-            {
-                <BookingModal product={product} />
-            }
+           
             </>
     );
 };
