@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCar,FaMapMarkerAlt } from "react-icons/fa";
+import { FaCar,FaMapMarkerAlt,FaThumbsUp,FaFlag } from "react-icons/fa";
 
 const Product = ({ product, setBookItem }) => {
     const { name, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified,isSold } = product;
@@ -12,11 +12,18 @@ const Product = ({ product, setBookItem }) => {
         <div className="w-[96%] mx-auto my-5 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-center justify-between">
         <span className="text-sm font-light text-gray-600 dark:text-gray-400">{poste_date}</span>
-        <Link className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500" tabindex="0" role="button">Wishlist</Link>
+                    <div className="flex">
+                        <div className="">
+                            <button className='flex items-center'><FaFlag/><span className='ml-2'>Report</span></button>
+                        </div>
+                        <div className="ml-4">
+                            <button className='flex items-center'><FaThumbsUp/><span className='ml-2'>Wishlist</span></button>
+                        </div>
+        </div>
     </div>
             <div className="flex flex-col lg:flex-row">
                 <img src={image} alt="" />
-                <div className="lg:mx-5">
+                <div className="lg:mx-5 lg:mt-8">
                     <div className="">
                         <p className='flex justify-start items-center  lg:font-bold lg:mb-2  lg:text-2xl'><FaCar/> <span className='ml-5'>{brand}</span> </p>
                         <p className='flex  justify-start items-center lg:font-bold lg:mb-2  lg:text-xl'><FaMapMarkerAlt/> <span className='ml-5'>{location}</span> </p>
