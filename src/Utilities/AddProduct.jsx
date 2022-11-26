@@ -1,6 +1,7 @@
 import toast from "react-hot-toast"
 import Swal from "sweetalert2"
 
+
 export const addProduct = (product) => {
     fetch('http://localhost:3001/add_product', {
         method: "POST",
@@ -17,6 +18,7 @@ export const addProduct = (product) => {
   'Product added successfully!',
   'success'
             )
+            
         })
     .catch(err=>toast.error(err.message))
 }
