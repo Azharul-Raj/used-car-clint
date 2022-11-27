@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../pages/Blog/Blog";
 import Buyers from "../pages/Dashboard/AdminAccess/Buyers";
 import Reported from "../pages/Dashboard/AdminAccess/Reported";
 import Sellers from "../pages/Dashboard/AdminAccess/Sellers";
@@ -11,7 +12,9 @@ import MyProducts from "../pages/Dashboard/SellerAccess/MyProducts";
 import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
+import NotFound from "../pages/NotFound/NotFound";
 import Products from "../pages/Products/Products";
+import Protected from "../pages/Protected/Protected";
 import DashboardLayout from "./DashboardLayout/DashboardLayout";
 import Main from "./Main/Main";
 
@@ -26,7 +29,11 @@ export const route = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Products />
+                element: <Protected><Products /></Protected>
+            },
+            {
+                path:'/blog',
+                element:<Blog/>
             },
             {
                 path: '/register',
@@ -81,5 +88,9 @@ export const route = createBrowserRouter([
                 ]
             }
         ]
+    },
+    {
+        path: '*',
+        element:<NotFound/>
     }
 ])

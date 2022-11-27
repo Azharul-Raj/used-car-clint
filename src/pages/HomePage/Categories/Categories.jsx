@@ -19,7 +19,7 @@ const Categories = () => {
     return (
         <div className='my-10'>
             <div className="">
-                <h4 className='text-center text-white text-4xl divider'>Categories</h4>
+                <h4 className='text-center text-white text-4xl mb-5 divider'>Categories</h4>
             </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-3 place-items-center'>
             {

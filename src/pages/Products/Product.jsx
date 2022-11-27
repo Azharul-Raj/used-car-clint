@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCar,FaMapMarkerAlt,FaThumbsUp,FaFlag } from "react-icons/fa";
+import { addReport } from '../../Utilities/AddReport';
 
-const Product = ({ product, setBookItem }) => {
-    const { name, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified,isSold } = product;
+const Product = ({ product, setBookItem,refetch }) => {
+    const { _id, name,isReported, sellerName, image, brand, poste_date, original_price, sale_price, used, location, condition, desc, isVerified,isSold } = product;
     const handleBook = (item) => {
         setBookItem(item);        
+    }
+    // handle report function
+    const handleReport = (id) => {
+        addReport(id, refetch);
     }
     return (
         <>
@@ -14,7 +19,7 @@ const Product = ({ product, setBookItem }) => {
         <span className="text-sm font-light text-gray-600 dark:text-gray-400">{poste_date}</span>
                     <div className="flex">
                         <div className="">
-                            <button className='flex items-center'><FaFlag/><span className='ml-2'>Report</span></button>
+                            <button onClick={()=>handleReport(_id)} className={isReported?'flex items-center text-red-500':'flex items-center'}><FaFlag/><span className='ml-2'>Report</span></button>
                         </div>
                         <div className="ml-4">
                             <button className='flex items-center'><FaThumbsUp/><span className='ml-2'>Wishlist</span></button>

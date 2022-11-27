@@ -1,8 +1,9 @@
 import React from 'react';
+import { sellerDelete, sellerDelte } from '../../../Utilities/SellerDelete';
 
 const SellerDeleteModal = ({seller,refetch}) => {
   const handleDelete = (id) => {
-    console.log(id);
+    sellerDelete(id, refetch);
   }
     return (
         <>

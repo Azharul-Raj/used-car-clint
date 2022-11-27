@@ -6,7 +6,7 @@ import SmallSpinner from "../../../components/SmallSpinner";
 import { addPayment } from "../../../Utilities/AddPayment";
 
 const CheckoutForm = ({ order }) => {
-  const { _id, sellerName, price,carName, name, email } = order;
+  const { _id,carId, sellerName, price,carName, name, email } = order;
   // states
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState();
@@ -61,7 +61,8 @@ const CheckoutForm = ({ order }) => {
     if (paymentIntent.status === "succeeded") {
       const payment = {
         buyerName: name,
-        productID: _id,
+        orderID: _id,
+        productID:carId,
         productName:carName,
         sellerName,
         transactionID: paymentIntent.id,

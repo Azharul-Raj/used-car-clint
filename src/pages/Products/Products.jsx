@@ -9,7 +9,7 @@ const Products = () => {
     const [bookItem, setBookItem] = useState(null);
   // const products = useLoaderData()
   const { id } = useParams();
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading,refetch } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:3001/category/${id}`);
@@ -33,7 +33,7 @@ const Products = () => {
       ))}
             </div>
             {
-                bookItem && <BookingModal bookItem={bookItem} setBookItem={setBookItem} />
+                bookItem && <BookingModal bookItem={bookItem} setBookItem={setBookItem} refetch={refetch} />
             }
             </>
   );

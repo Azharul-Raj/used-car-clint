@@ -28,7 +28,8 @@ const Register = () => {
         const userInfo = {
           name,
           role,
-          email
+          email,
+          isVerified:false
         }
         addUser(userInfo);
         
@@ -44,11 +45,12 @@ const Register = () => {
         const userInfo = {
           name: profile.displayName,
           role:"Buyer",
-          email:profile.email
+          email: profile.email,
+          isVerified:false
         }
         addUser(userInfo);
         console.log(profile);
-        toast.success('user created')
+        // toast.success('user created')
     })
   }
     

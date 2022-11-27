@@ -8,8 +8,7 @@ const Header = () => {
   const menus = <>
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/dashboard'>Dashboard</Link></li>
-      <li><Link to='/'>About</Link></li>
-      <li><Link to='/'>Blog</Link></li>
+      <li><Link to='/blog'>Blog</Link></li>
     {user?.uid ?
       <li><Link onClick={() => logOut()} to='/' className="btn">Logout</Link></li>
       

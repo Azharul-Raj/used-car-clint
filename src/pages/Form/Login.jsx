@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from '../../assets/google.svg';
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addUser } from "../../Utilities/AddUser";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/';
+  console.log(from);
   const { emailLogin, googleSignIn } = useContext(AuthContext);
   const {
     register,
@@ -32,7 +36,8 @@ const Login = () => {
           const userInfo = {
             name: profile.displayName,
             role:"Buyer",
-            email:profile.email
+            email: profile.email,
+            isVerified:false
           }
           addUser(userInfo);
           console.log(profile);
