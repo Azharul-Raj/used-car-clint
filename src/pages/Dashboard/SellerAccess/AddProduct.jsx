@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { addProduct } from '../../../Utilities/AddProduct';
 
 const AddProduct = () => {
-    const navigate = useNavigate();
     const handleAddProduct = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -34,8 +32,7 @@ const AddProduct = () => {
             phone, desc,
             isPaid:false
         }
-        addProduct(product);
-        navigate('/dashboard/products')
+        addProduct(product);        
     }
     return (
         <div className="mx-4 lg:mx-10">

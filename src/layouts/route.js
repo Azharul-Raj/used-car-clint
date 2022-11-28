@@ -61,10 +61,10 @@ export const route = createBrowserRouter([
               </Protected>
             ),
           },
-          {
-            path: '/dashboard',
-            element:<SellerProtected><AddProduct/></SellerProtected>
-          },
+          // {
+          //   path: '/dashboard',
+          //   element:<SellerProtected><AddProduct/></SellerProtected>
+          // },
           {
             path: "/dashboard/wishlist",
             element: <Wishlist />,

@@ -1,4 +1,5 @@
 import toast from "react-hot-toast"
+import { Navigate} from "react-router-dom"
 import Swal from "sweetalert2"
 
 
@@ -14,10 +15,10 @@ export const addProduct = (product) => {
         .then(data => {
             Swal.fire(
                 'Thank You!',
-  'Product added successfully!',
-  'success'
-            )
-            
+                'Product added successfully!',
+                'success'
+            );
+                < Navigate to = '/dashboard/products' />;
         })
     .catch(err=>toast.error(err.message))
 }

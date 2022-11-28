@@ -1,13 +1,29 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useRole from '../../hooks/useRole';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const [role] = useRole(user?.email);
+  let location;
+  if(user?.uid){
+  if (role === 'Buyer') {
+    location='/dashboard'
+  }
+  else if (role === 'Seller') {
+    location='/dashboard/add_product'
+  }
+  else if(role==='Admin') {
+    location='/dashboard/all_sellers'
+    }
+  }
+  else {    
+    location='/dashboard'
+  }
   const menus = <>
       <li><Link to='/'>Home</Link></li>
-      <li><Link to='/dashboard'>Dashboard</Link></li>
+    <li><Link to={location}>Dashboard</Link></li>
       <li><Link to='/blog'>Blog</Link></li>
     {user?.uid ?
       <li><Link onClick={() => logOut()} to='/' className="btn">Logout</Link></li>
