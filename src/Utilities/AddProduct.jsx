@@ -3,7 +3,7 @@ import Swal from "sweetalert2"
 
 
 export const addProduct = (product) => {
-    fetch('http://localhost:3001/add_product', {
+    fetch('https://usedcarzone-server.vercel.app/add_product', {
         method: "POST",
         headers: {
             "content-type":"application/json"

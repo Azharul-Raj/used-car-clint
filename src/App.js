@@ -4,7 +4,7 @@ import { route } from "./layouts/route";
 import { RouterProvider } from "react-router-dom";
 import axios from 'axios';
 
-axios.defaults.baseURL='http://localhost:3001'
+axios.defaults.baseURL='https://usedcarzone-server.vercel.app'
 function App() {
   const router = route;
   return (

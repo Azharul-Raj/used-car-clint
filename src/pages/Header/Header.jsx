@@ -14,7 +14,6 @@ const Header = () => {
       
       :<li><Link to='/login' className="btn">Login</Link></li>}
   </>
-  console.log(user);
     return (
         <div className="navbar bg-base-100 justify-between">
   <div className="navbar-start">

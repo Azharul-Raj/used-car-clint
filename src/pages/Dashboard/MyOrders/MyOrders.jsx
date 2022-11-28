@@ -1,27 +1,35 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import Order from "./Order";
 
 const MyOrders = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["doctors", user?.email],
-    queryFn: () =>
-      fetch(`http://localhost:3001/orders?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
-    // queryFn:()=>axios.get(`/orders?email=${user?.email}`).then(res=>res.json())
-  });
-  if (isLoading) {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://usedcarzone-server.vercel.app/orders?email=${user?.email}`, {
+      headers: {
+        authorization: `Berar ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setOrders(data);
+        setLoading(false);
+      });
+  }, [user?.email]);
+  if (loading) {
     return <SpinnerMedium />;
   }
 
-  console.log(orders, user?.email);
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
@@ -35,9 +43,9 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            orders.map(order=><Order key={order._id} order={order} />)
-          }
+          {orders?.map((order) => (
+            <Order key={order._id} order={order} />
+          ))}
         </tbody>
       </table>
     </div>

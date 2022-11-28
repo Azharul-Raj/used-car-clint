@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 export const productAdvertise = (id, func) => {
     console.log(id);
-    fetch(`http://localhost:3001/update/${id}`, {
+    fetch(`https://usedcarzone-server.vercel.app/update/${id}`, {
         method: "PUT",
         headers: {
             "content-type":"application/json"

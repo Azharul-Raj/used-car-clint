@@ -1,20 +1,20 @@
+/* eslint-disable no-restricted-globals */
 import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import SingleProduct from "./SingleProduct";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const {
     data: myproducts = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["myproducts", user?.displayName],
+    queryKey: ["myproducts", user?.displayName,onload],
     queryFn: async () => {
       const res = await axios.get(`my_products/${user?.displayName}`);
       return res.data;

@@ -1,8 +1,8 @@
 import toast from "react-hot-toast"
 import Swal from "sweetalert2"
 
-export const sellerDelete = (id, func) => {
-    fetch(`http://localhost:3001/seller/${id}`, {
+export const sellerDelete = (id,name, func) => {
+    fetch(`https://usedcarzone-server.vercel.app/seller/${id}?name=${name}`, {
         method:"DELETE"
     })
         .then(res => res.json())

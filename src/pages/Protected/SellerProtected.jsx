@@ -14,7 +14,7 @@ const SellerProtected = ({ children }) => {
     if (user?.uid && role==='Seller') {
         return children;
     }
-    return <Navigate to='/login'state={{from:location}} replace/>
+    return <Navigate to='*'state={{from:location}} replace/>
 };
 
 export default SellerProtected;

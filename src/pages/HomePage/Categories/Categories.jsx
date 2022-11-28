@@ -7,12 +7,9 @@ import SpinnerMedium from '../../../components/SpinnerMedium'
 const Categories = () => {
     const { data: categories = [],isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: async () => {
-            const res = await axios.get('/categories'); 
-            return res.data
-        }
+        queryFn:  () => axios.get('/categories').then(res=>res.data)
+
     })
-    console.log(categories);
     if (isLoading) {
         return <SpinnerMedium/>
     }

@@ -14,83 +14,121 @@ import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFound from "../pages/NotFound/NotFound";
 import Products from "../pages/Products/Products";
+import AdminProtected from "../pages/Protected/AdminProtected";
 import Protected from "../pages/Protected/Protected";
+import SellerProtected from "../pages/Protected/SellerProtected";
 import DashboardLayout from "./DashboardLayout/DashboardLayout";
 import Main from "./Main/Main";
 
 export const route = createBrowserRouter([
-    {
-        path: '/',
-        element: <Main />,
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/category/:id",
+        element: (
+          <Protected>
+            <Products />
+          </Protected>
+        ),
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardLayout />,
         children: [
-            {
-                path: '/',
-                element:<HomePage/>
-            },
-            {
-                path: '/category/:id',
-                element: <Protected><Products /></Protected>
-            },
-            {
-                path:'/blog',
-                element:<Blog/>
-            },
-            {
-                path: '/register',
-                element:<Register/>
-                
-            },
-            {
-                path: '/login',
-                element:<Login/>
-            },
-            {
-                path: '/dashboard',
-                element: <DashboardLayout />,
-                children: [
-                    {
-                        path: '/dashboard',
-                        element:<MyOrders/>
-                    },
-                    {
-                        path: '/dashboard/wishlist',
-                        element:<Wishlist/>
-                    },
-                    {
-                        path: '/dashboard/payment/:id',
-                        element: <Payment />,
-                        loader:({params})=>fetch(`http://localhost:3001/payment/${params.id}`)
-                    },
-                    {
-                        path: '/dashboard/add_product',
-                        element:<AddProduct/>
-                    },
-                    {
-                        path: '/dashboard/my_buyers',
-                        element:<MyBuyers/>
-                    },
-                    {
-                        path: '/dashboard/products',
-                        element:<MyProducts/>
-                    },
-                    {
-                        path: '/dashboard/all_sellers',
-                        element:<Sellers/>
-                    },
-                    {
-                        path: '/dashboard/all_buyers',
-                        element:<Buyers/>
-                    },
-                    {
-                        path: '/dashboard/all_reports',
-                        element:<Reported/>
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        path: '*',
-        element:<NotFound/>
-    }
-])
+          {
+            path: "/dashboard",
+            element: (
+              <Protected>
+                <MyOrders />
+              </Protected>
+            ),
+          },
+          {
+            path: '/dashboard',
+            element:<SellerProtected><AddProduct/></SellerProtected>
+          },
+          {
+            path: "/dashboard/wishlist",
+            element: <Wishlist />,
+          },
+          {
+            path: "/dashboard/payment/:id",
+            element: <Payment />,
+            loader: ({ params }) =>
+              fetch(`https://usedcarzone-server.vercel.app/payment/${params.id}`),
+          },
+          {
+            path: "/dashboard/add_product",
+            element: (
+              <SellerProtected>
+                <AddProduct />
+              </SellerProtected>
+            ),
+          },
+          {
+            path: "/dashboard/my_buyers",
+            element: (
+              <SellerProtected>
+                <MyBuyers />
+              </SellerProtected>
+            ),
+          },
+          {
+            path: "/dashboard/products",
+            element: (
+              <SellerProtected>
+                <MyProducts />
+              </SellerProtected>
+            ),
+          },
+          {
+            path: "/dashboard/all_sellers",
+            element: (
+              <AdminProtected>
+                <Sellers />
+              </AdminProtected>
+            ),
+          },
+          {
+            path: "/dashboard/all_buyers",
+            element: (
+              <AdminProtected>
+                <Buyers />
+              </AdminProtected>
+            ),
+          },
+          {
+            path: "/dashboard/all_reports",
+            element: (
+              <AdminProtected>
+                <Reported />
+              </AdminProtected>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+]);

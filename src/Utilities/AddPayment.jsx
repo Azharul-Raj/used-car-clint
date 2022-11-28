@@ -1,5 +1,5 @@
 export const addPayment = (info) => {
-    fetch(`http://localhost:3001/payments`, {
+    fetch(`https://usedcarzone-server.vercel.app/payments`, {
         method: "POST",
         headers: {
             "content-type":"application/json"

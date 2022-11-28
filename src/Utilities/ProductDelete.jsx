@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 export const ProductDelete = (id, func) => {
     console.log(id);
-    fetch(`http://localhost:3001/product_delete/${id}`, {
+    fetch(`https://usedcarzone-server.vercel.app/product_delete/${id}`, {
         method: "DELETE",
         headers: {
             "content-type":"application/json"

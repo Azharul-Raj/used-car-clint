@@ -1,21 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from '../../assets/google.svg';
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addUser } from "../../Utilities/AddUser";
+import { getToken } from "../../Utilities/GetToken";
 
 const Login = () => {
+  
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
-  console.log(from);
-  const { emailLogin, googleSignIn } = useContext(AuthContext);
+  const from = location.state?.from?.pathname || "/";
+  const { emailLogin, googleSignIn,user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   // login function here
@@ -25,6 +25,15 @@ const Login = () => {
     emailLogin(email, password)
       .then(result => {
         const profile = result.user;
+        getToken(profile.email)
+        const userInfo = {
+          name: profile.displayName,
+            role:"Buyer",
+            email: profile.email,
+            isVerified:false
+        }
+        addUser(userInfo)
+        navigate(from, { replace: true });
       })
     .catch(err=>toast.error(err.message))
   };
@@ -33,17 +42,22 @@ const Login = () => {
       googleSignIn()
         .then(result => {
           const profile = result.user;
+          toast.success('Sign In Successfully');
           const userInfo = {
             name: profile.displayName,
             role:"Buyer",
             email: profile.email,
             isVerified:false
           }
-          addUser(userInfo);
-          console.log(profile);
-          toast.success('user created')
+          getToken(profile?.email);
+          addUser(userInfo);          
       })
+  }
+  useEffect(() => {
+    if (user) {
+      navigate(from,{replace:true})
     }
+  },[user,from,navigate])
   return (
     <div className="flex justify-center items-center my-12">
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

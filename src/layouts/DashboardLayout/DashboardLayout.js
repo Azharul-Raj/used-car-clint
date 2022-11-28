@@ -6,7 +6,6 @@ import useRole from '../../hooks/useRole';
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [role] = useRole(user?.email);
-  console.log(role);
     return (
       <div className="drawer drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -18,12 +17,12 @@ const DashboardLayout = () => {
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> 
         <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            {/* {role ==='User' &&
-              <> */}
+            {role ==='User' &&
+              <>
                 <li><Link to='/dashboard'>My Orders</Link></li>
             <li><Link to='/dashboard/wishlist'>Wish List</Link></li>
-              {/* </>
-          } */}
+              </>
+          }
             {role==='Buyer' &&
               <>
                 <li><Link to='/dashboard'>My Orders</Link></li>

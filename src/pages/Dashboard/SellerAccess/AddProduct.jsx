@@ -31,7 +31,8 @@ const AddProduct = () => {
             used, post_date,
             isVerified,
             condition,
-            phone,desc
+            phone, desc,
+            isPaid:false
         }
         addProduct(product);
         navigate('/dashboard/products')

@@ -12,7 +12,7 @@ const CheckoutForm = ({ order }) => {
   const [clientSecret, setClientSecret] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:3001/create-payment-intent", {
+    fetch("https://usedcarzone-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",

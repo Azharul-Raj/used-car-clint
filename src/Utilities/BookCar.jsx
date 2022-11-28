@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export const bookCar = (info) => {
-    fetch('http://localhost:3001/orders', {
+    fetch('https://usedcarzone-server.vercel.app/orders', {
         method: "POST",
         headers: {
             "content-type":"application/json"

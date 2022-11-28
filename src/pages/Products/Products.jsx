@@ -1,41 +1,47 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import SpinnerMedium from "../../components/SpinnerMedium";
 import Product from "./Product";
-import BookingModal from './BookingModal/BookingModal';
+import BookingModal from "./BookingModal/BookingModal";
+import axios from "axios";
 
 const Products = () => {
-    const [bookItem, setBookItem] = useState(null);
+  const [bookItem, setBookItem] = useState(null);
   // const products = useLoaderData()
   const { id } = useParams();
-  const { data: products = [], isLoading,refetch } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["category"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:3001/category/${id}`);
-      const data = res.json();
-      return data;
-    },
+    queryFn:  () =>axios.get(`/category/${id}`).then((res) => res.data)
+    
   });
   if (isLoading) {
-    return (
-      <div className="">
-        <SpinnerMedium />
-      </div>
-    );
+    return <SpinnerMedium />;
   }
-  console.log(typeof id);
-    return (
-      <>
-    <div className="">
-      {products?.map((product) => (
-        <Product key={product._id} product={product} setBookItem={setBookItem} />
-      ))}
-            </div>
-            {
-                bookItem && <BookingModal bookItem={bookItem} setBookItem={setBookItem} refetch={refetch} />
-            }
-            </>
+  return (
+    <>
+      <div className="">
+        {products?.map((product) => (
+          <Product
+            key={product._id}
+            product={product}
+            setBookItem={setBookItem}
+            refetch={refetch}
+          />
+        ))}
+      </div>
+      {bookItem && (
+        <BookingModal
+          bookItem={bookItem}
+          setBookItem={setBookItem}
+          refetch={refetch}
+        />
+      )}
+    </>
   );
 };
 

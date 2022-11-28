@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Advertise = () => {
+  const { user } = useContext(AuthContext);
   const [advertiseItems, setAdvertiseItems] = useState([]);
+  
   useEffect(() => {
-    fetch(`http://localhost:3001/advertise`)
+    fetch(`https://usedcarzone-server.vercel.app/advertise`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAdvertiseItems(data);
       });
-  }, []);
+  }, [user?.email]);
+
   return (
     <>
       {advertiseItems.length ? (
