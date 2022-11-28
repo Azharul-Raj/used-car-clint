@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { makeSeller } from "../../../Utilities/MakeSeller";
 import BuyerDeleteModal from "./BuyerDeleteModal";
 
 const Buyer = ({ buyer, idx, refetch }) => {
-  console.log(idx);
   const { name, email, role, _id } = buyer;
+  const handleMakeSeller = (id) => {
+    makeSeller(id, refetch);
+  }
   return (
     <>
       <tr>
@@ -12,6 +15,7 @@ const Buyer = ({ buyer, idx, refetch }) => {
         <td>{name}</td>
         <td>{email}</td>
         <td>{role}</td>
+        <td><button onClick={()=>handleMakeSeller(_id)} disabled={role==='Seller'} className="btn btn-sm bg-green-500 text-white">make seller</button></td>
         <td>
           <label
             htmlFor="buyer-delete-modal"

@@ -39,6 +39,7 @@ const Buyers = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Upgrade</th>
             <th>Action</th>
           </tr>
         </thead>

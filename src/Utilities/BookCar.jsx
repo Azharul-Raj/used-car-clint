@@ -10,7 +10,6 @@ export const bookCar = (info) => {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             Swal.fire(
                 'Thank You!',
                 'Car booked successfully!',
