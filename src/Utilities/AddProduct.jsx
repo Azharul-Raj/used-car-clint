@@ -12,7 +12,6 @@ export const addProduct = (product) => {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             Swal.fire(
                 'Thank You!',
   'Product added successfully!',

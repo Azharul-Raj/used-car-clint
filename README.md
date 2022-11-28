@@ -1,6 +1,6 @@
 # PROJECT OVERVIEW
 
-This project was bootstrapped with [UsedCarZone](https://used-car-zone.web.app/).
+Live Website link [UsedCarZone](https://used-car-zone.web.app/).
 
 ## Workflow
 * This project is designed with React Js
@@ -12,3 +12,6 @@ This project was bootstrapped with [UsedCarZone](https://used-car-zone.web.app/)
 * Payment integrated with stripe
 * Authentication system implemented with firebase
 * Node Js is used as a backend
+
+## adminEmail: admin@gmail.com
+## adminPassword: 123456
