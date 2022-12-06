@@ -23,7 +23,7 @@ const Header = () => {
   }
   const menus = <>
       <li><Link to='/'>Home</Link></li>
-    <li><Link to={location}>Dashboard</Link></li>
+    {user && <li><Link to={location}>Dashboard</Link></li>}
       <li><Link to='/blog'>Blog</Link></li>
     {user?.uid ?
       <li><Link onClick={() => logOut()} to='/' className="btn">Logout</Link></li>
