@@ -1,11 +1,33 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useRole from '../../hooks/useRole';
+import { addUser } from '../../Utilities/AddUser';
+import { getToken } from '../../Utilities/GetToken';
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, emailLogin, logOut } = useContext(AuthContext);
   const [role] = useRole(user?.email);
+  // demo login function here
+  const handleDemoLogin = () => {
+    const email = "demo@gmail.com"
+    const password = "123456"
+    emailLogin(email, password)
+      .then(result => {
+        const profile = result.user;
+        getToken(profile.email)
+        const userInfo = {
+          name: profile.displayName,
+            role:"Buyer",
+            email: profile.email,
+            isVerified:false
+        }
+        addUser(userInfo)
+      })
+    .catch(err=>toast.error(err.message))
+  }
+  // demo login function here
   let location;
   if(user?.uid){
   if (role === 'Buyer') {
@@ -28,7 +50,12 @@ const Header = () => {
     {user?.uid ?
       <li><Link onClick={() => logOut()} to='/' className="btn">Logout</Link></li>
       
-      :<li><Link to='/login' className="btn">Login</Link></li>}
+      :
+      <>
+      <li><Link onClick={handleDemoLogin} className="btn btn-primary">Demo Login</Link></li>
+      <li><Link to='/login' className="btn">Login</Link></li>
+      </>
+      }
   </>
     return (
         <div className="navbar bg-base-100 justify-between">
