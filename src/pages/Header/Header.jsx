@@ -1,21 +1,24 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useRole from '../../hooks/useRole';
 import { addUser } from '../../Utilities/AddUser';
 import { getToken } from '../../Utilities/GetToken';
 
 const Header = () => {
-  const { user, emailLogin, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user, emailLogin,updateInfo, logOut } = useContext(AuthContext);
   const [role] = useRole(user?.email);
   // demo login function here
   const handleDemoLogin = () => {
+    const name='Demo'
     const email = "demo@gmail.com"
     const password = "123456"
     emailLogin(email, password)
       .then(result => {
         const profile = result.user;
+        updateInfo(name)
         getToken(profile.email)
         const userInfo = {
           name: profile.displayName,
@@ -24,6 +27,7 @@ const Header = () => {
             isVerified:false
         }
         addUser(userInfo)
+        navigate('/')
       })
     .catch(err=>toast.error(err.message))
   }
@@ -52,7 +56,7 @@ const Header = () => {
       
       :
       <>
-      <li><Link onClick={handleDemoLogin} className="btn btn-primary">Demo Login</Link></li>
+      <li><Link onClick={handleDemoLogin} className="btn">Demo Login</Link></li>
       <li><Link to='/login' className="btn">Login</Link></li>
       </>
       }
