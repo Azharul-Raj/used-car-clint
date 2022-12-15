@@ -31,7 +31,8 @@ const MyOrders = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <>
+    {orders.length?<div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
@@ -48,7 +49,12 @@ const MyOrders = () => {
           ))}
         </tbody>
       </table>
-    </div>
+      </div> :
+        <div className="flex justify-center items-center text-4xl font-bold">
+          <h3 >NO ORDERS FOUND</h3>
+        </div>
+      }
+      </>
   );
 };
 
