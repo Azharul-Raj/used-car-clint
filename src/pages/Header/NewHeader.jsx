@@ -5,6 +5,9 @@ import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 
 export default function NewHeader() {
   const [isOpen,setIsOpen]=useState(false);
+  const handleClick=()=>{
+    console.log("clicked")
+  }
   const navs=[
     {
       name:"Home"
@@ -34,7 +37,7 @@ export default function NewHeader() {
      <ul className={`flex items-center flex-col lg:flex-row lg:justify-between ${isOpen? "opacity-100 top-16 pb-5":"opacity-0 -top-96"}  transition-all ease-in duration-500 -z-10 absolute bg-[#2a303c] w-full left-0 lg:static lg:z-auto lg:w-auto lg:opacity-100 lg:py-0`}>
       {
         navs.map(nav=>(
-          <li className='mx-4 my-2' key={nav.name}>
+          <li onClick={handleClick} className='mx-4 my-2' key={nav.name}>
             <Link className='text-xl hover:tex-cyan-500 duration-500 text-gray-200'>{nav.name}</Link>
           </li>
         ))
