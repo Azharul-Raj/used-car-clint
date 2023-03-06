@@ -10,7 +10,8 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 items-center gap-12 px-2 md:px-0">
           <div className="col-span-1">
             <div className="relative w-full">
-              <img
+              <img 
+              className="-z-20 relative"
                 src={car}
                 alt="shoes"
                 loading="lazy"
