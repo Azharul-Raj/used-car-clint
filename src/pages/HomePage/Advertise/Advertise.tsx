@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { advertiseItemsType } from "../../../types/types.data";
 
 const Advertise = () => {
   const { user } = useContext(AuthContext);
-  const [advertiseItems, setAdvertiseItems] = useState([]);
+  const [advertiseItems, setAdvertiseItems] = useState<advertiseItemsType[]>([]);
   
   useEffect(() => {
     fetch(`https://usedcarzone-server.vercel.app/advertise`, {
