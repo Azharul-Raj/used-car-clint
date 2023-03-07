@@ -1,11 +1,21 @@
 import React, { useContext, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { useForm,SubmitHandler } from "react-hook-form";
+import toast, { Renderable, Toast, ValueFunction } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from '../../assets/google.svg';
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addUser } from "../../Utilities/AddUser";
 import { getToken } from "../../Utilities/GetToken";
+
+// type defined
+type FormValues={
+  email:string;
+  password:string;
+}
+type dataType={
+  email:string;
+  password:string;
+}
 
 const Login = () => {
   
@@ -17,13 +27,13 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
   // login function here
-  const handleLogin = (data) => {
+  const handleLogin:SubmitHandler<FormValues> = (data: dataType) => {
     const email = data.email;
     const password = data.password;
     emailLogin(email, password)
-      .then(result => {
+      .then((result: { user: any; }) => {
         const profile = result.user;
         getToken(profile.email)
         const userInfo = {
@@ -35,12 +45,12 @@ const Login = () => {
         addUser(userInfo)
         navigate(from, { replace: true });
       })
-    .catch(err=>toast.error(err.message))
+    .catch((err: { message: Renderable | ValueFunction<Renderable, Toast>; })=>toast.error(err.message))
   };
     // google signIn function
     const handleGoogleSignIn = () => {
       googleSignIn()
-        .then(result => {
+        .then((result: { user: any; }) => {
           const profile = result.user;
           toast.success('Sign In Successfully');
           const userInfo = {
@@ -77,7 +87,7 @@ const Login = () => {
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           {...register("email")}
         />
-        <p>{errors.firstName?.message}</p>
+        <p>{errors.email?.message}</p>
       </div>
       <div className="">
         <label
