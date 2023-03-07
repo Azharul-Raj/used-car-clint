@@ -5,6 +5,7 @@ import SpinnerMedium from "../../components/SpinnerMedium";
 import Product from "./Product";
 import BookingModal from "./BookingModal/BookingModal";
 import axios from "axios";
+import { productType } from "../../types/data.types";
 
 const Products = () => {
   const [bookItem, setBookItem] = useState(null);
@@ -25,7 +26,7 @@ const Products = () => {
   return (
     <>
       <div className="">
-        {products?.map((product) => (
+        {products?.map((product:productType) => (
           <Product
             key={product._id}
             product={product}
@@ -38,7 +39,7 @@ const Products = () => {
         <BookingModal
           bookItem={bookItem}
           setBookItem={setBookItem}
-          refetch={refetch}
+          // refetch={refetch}
         />
       )}
     </>

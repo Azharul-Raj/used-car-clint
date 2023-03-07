@@ -1,21 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext,ChangeEvent, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { bookModalType } from "../../../types/data.types";
 import { bookCar } from "../../../Utilities/BookCar";
 
-const BookingModal = ({ bookItem,setBookItem }) => {
+const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
   const { user } = useContext(AuthContext);
   const { _id, name, sellerName, brand, sale_price } = bookItem;
 
-  const handleBooking = (e) => {
+  const handleBooking = (e:React.ChangeEvent<HTMLInputElement>|any) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const carName = form.carName.value;
-      const strPrice = form.price.value;
-      const price=parseFloat(strPrice.split(' '))
-    const phone = form.phone.value;
-    const location = form.location.value;
+    const { target } = e;
+  const name = target.elements.namedItem("name").value;
+  const email = target.elements.namedItem("email").value;
+  const carName = target.elements.namedItem("carName").value;
+  const strPrice = target.elements.namedItem("price").value;
+  const price = parseFloat(strPrice.split(" ")[0]);
+  const phone = target.elements.namedItem("phone").value;
+  const location = target.elements.namedItem("location").value;
     const bookingInfo = {
       name,
       email,

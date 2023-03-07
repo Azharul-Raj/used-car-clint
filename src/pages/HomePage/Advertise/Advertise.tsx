@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
 import { AuthContext } from "../../../contexts/AuthProvider";
-import { advertiseItemsType } from "../../../types/types.data";
+import { advertiseItemsType } from "../../../types/data.types";
 
 const Advertise = () => {
   const { user } = useContext(AuthContext);
