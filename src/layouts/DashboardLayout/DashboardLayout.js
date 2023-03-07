@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [role] = useRole(user?.email);
     return (
-      <div className="drawer drawer-mobile">
+      <div className="drawer z-10 drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           <Outlet/>             

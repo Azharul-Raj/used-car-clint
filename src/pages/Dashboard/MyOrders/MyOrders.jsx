@@ -32,7 +32,7 @@ const MyOrders = () => {
 
   return (
     <>
-    {orders.length?<div className="overflow-x-auto">
+    {orders?.length?<div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
