@@ -16,7 +16,9 @@ type dataType={
   email:string;
   password:string;
 }
-
+ type errorType={
+   message: Renderable | ValueFunction<Renderable, Toast>; 
+  }
 const Login = () => {
   
   const location = useLocation();
@@ -45,7 +47,7 @@ const Login = () => {
         addUser(userInfo)
         navigate(from, { replace: true });
       })
-    .catch((err: { message: Renderable | ValueFunction<Renderable, Toast>; })=>toast.error(err.message))
+    .catch((err: errorType)=>toast.error(err.message))
   };
     // google signIn function
     const handleGoogleSignIn = () => {

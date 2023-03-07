@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useForm,SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import googleLogo from "../../assets/google.svg";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addUser } from "../../Utilities/AddUser";
 import { getToken } from "../../Utilities/GetToken";
+
+type FormValues={
+  name:string;
+  role:string;
+  email:string;
+  password:string;
+}
+
+
 
 const Register = () => {
   const { emailSignUp, updateInfo, googleSignIn } = useContext(AuthContext);
@@ -14,15 +23,15 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onLogin = (data) => {
+  } = useForm<FormValues>();
+  const handleRegister:SubmitHandler<FormValues> = (data:FormValues) => {
     console.log(data);
     const name = data.name;
     const role = data.role;
     const email = data.email;
     const password = data.password;
     emailSignUp(email, password)
-      .then((result) => {
+      .then((result:any) => {
         const profile = result.user;
         updateInfo(name);
         const userInfo = {
@@ -40,7 +49,7 @@ const Register = () => {
   };
   // google signIn function
   const handleGoogleSignIn = () => {
-    googleSignIn().then((result) => {
+    googleSignIn().then((result:any) => {
       const profile = result.user;
       const userInfo = {
         name: profile.displayName,
@@ -64,7 +73,7 @@ const Register = () => {
           </h1>
           <form
             className="space-y-4 md:space-y-6"
-            onSubmit={handleSubmit(onLogin)}
+            onSubmit={handleSubmit(handleRegister)}
           >
             <div className="">
               <label
