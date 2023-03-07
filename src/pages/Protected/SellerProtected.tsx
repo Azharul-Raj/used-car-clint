@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useRole from '../../hooks/useRole';
 import SpinnerMedium from '../../components/SpinnerMedium';
 
-const SellerProtected = ({ children }:{children:React.ReactNode}) => {
+const SellerProtected = ({ children }:{children:React.ReactNode|any}) => {
     const location = useLocation();
     const { user,loading } = useContext(AuthContext);
     const [role, isLoading] = useRole(user?.email);

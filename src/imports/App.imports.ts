@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Routes,Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Main from "../layouts/Main/Main";
 import HomePage from "../pages/HomePage/HomePage";
 import Protected from "../pages/Protected/Protected";
@@ -20,3 +20,29 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import NotFound from "../pages/NotFound/NotFound";
 import Register from "../pages/Form/Register";
 import Login from "../pages/Form/Login";
+
+export {
+  axios,
+  Routes,
+  Route,
+  Main,
+  HomePage,
+  Protected,
+  Products,
+  Blog,
+  Buyers,
+  Reported,
+  Sellers,
+  MyOrders,
+  Wishlist,
+  Payment,
+  AddProduct,
+  MyBuyers,
+  MyProducts,
+  AdminProtected,
+  SellerProtected,
+  DashboardLayout,
+  NotFound,
+  Register,
+  Login,
+};
