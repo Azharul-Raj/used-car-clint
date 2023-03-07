@@ -1,3 +1,4 @@
+import React from 'react';
 
 import './App.css'
 import { route } from "./layouts/route";
@@ -10,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router}>
+        
         </RouterProvider>
     </div>
   );
