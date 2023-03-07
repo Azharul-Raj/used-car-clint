@@ -12,10 +12,7 @@ type FormValues={
   email:string;
   password:string;
 }
-type dataType={
-  email:string;
-  password:string;
-}
+
  type errorType={
    message: Renderable | ValueFunction<Renderable, Toast>; 
   }
@@ -31,7 +28,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormValues>();
   // login function here
-  const handleLogin:SubmitHandler<FormValues> = (data: dataType) => {
+  const handleLogin:SubmitHandler<FormValues> = (data: FormValues) => {
     const email = data.email;
     const password = data.password;
     emailLogin(email, password)

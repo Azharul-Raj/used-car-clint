@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+type categoryType={
+  category:{
+    name:string;
+    image:string;
+    category_id:string;
+  }
+}
 
-const Category = ({ category }) => {
+const Category = ({ category }:categoryType) => {
   const { name, image, category_id } = category;
   return (
     <Link to={`/category/${category_id}`}>
