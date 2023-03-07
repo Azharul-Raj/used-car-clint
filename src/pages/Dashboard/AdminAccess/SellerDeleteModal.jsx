@@ -1,5 +1,5 @@
 import React from 'react';
-import { sellerDelete, sellerDelte } from '../../../Utilities/SellerDelete';
+import { sellerDelete} from '../../../Utilities/SellerDelete';
 
 const SellerDeleteModal = ({seller,refetch}) => {
   const handleDelete = (id,name) => {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { makeSeller } from "../../../Utilities/MakeSeller";
 import BuyerDeleteModal from "./BuyerDeleteModal";
 
