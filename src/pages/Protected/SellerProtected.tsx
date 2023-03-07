@@ -4,17 +4,17 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useRole from '../../hooks/useRole';
 import SpinnerMedium from '../../components/SpinnerMedium';
 
-const AdminProtected = ({ children }) => {
+const SellerProtected = ({ children }:{children:React.ReactNode}) => {
     const location = useLocation();
     const { user,loading } = useContext(AuthContext);
     const [role, isLoading] = useRole(user?.email);
     if (loading || isLoading) {
         return <SpinnerMedium/>
     }
-    if (user?.uid && role==='Admin') {
+    if (user?.uid && role==='Seller') {
         return children;
     }
     return <Navigate to='*'state={{from:location}} replace/>
 };
 
-export default AdminProtected;
+export default SellerProtected;
