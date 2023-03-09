@@ -1,5 +1,5 @@
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "@tanstack/react-query";
-import { buyerType, productType } from "./data.types";
+import { userType, productType } from "./data.types";
 
 export interface productProps{
     product:productType;
@@ -8,7 +8,12 @@ export interface productProps{
 }
 
 export interface buyerProp{
-    buyer:buyerType;
+    buyer:userType;
+    idx:number;
+    refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
+  }
+export interface sellerProp{
+    seller:userType;
     idx:number;
     refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
   }

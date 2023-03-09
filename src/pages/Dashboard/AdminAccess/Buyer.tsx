@@ -1,5 +1,5 @@
 import React from "react";
-import { buyerType } from "../../../types/data.types";
+import { userType } from "../../../types/data.types";
 import { buyerProp } from "../../../types/props.types";
 import { makeSeller } from "../../../Utilities/MakeSeller";
 

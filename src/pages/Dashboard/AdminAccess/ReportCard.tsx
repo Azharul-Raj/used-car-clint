@@ -58,7 +58,7 @@ const ReportCard = ({ reported,refetch}:reportedProps) => {
       </div>
             </div>
             {
-                reported && <ReportDeleteModal refetch={refetch} report={reported} />
+                reported && <ReportDeleteModal refetch={refetch} reported={reported} />
             }
             </>
     );

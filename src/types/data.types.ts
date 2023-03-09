@@ -25,7 +25,7 @@ export type productType = {
   isSold: boolean;
 };
 
-export type buyerType={
+export type userType={
   _id:string;
   name:string;
   role:string;

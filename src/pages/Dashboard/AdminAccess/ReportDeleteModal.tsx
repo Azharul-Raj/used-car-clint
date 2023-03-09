@@ -1,8 +1,9 @@
 import React from 'react';
+import { reportedProps } from '../../../types/props.types';
 import { ProductDelete } from '../../../Utilities/ProductDelete';
 
-const ReportDeleteModal = ({refetch,report}) => {
-    const handleDelete = (id) => {
+const ReportDeleteModal = ({refetch,reported}:reportedProps) => {
+    const handleDelete = (id:string) => {
         ProductDelete(id, refetch);
     }
     return (
@@ -13,7 +14,7 @@ const ReportDeleteModal = ({refetch,report}) => {
     <h3 className="font-bold text-lg">Are you sure you want to delete this item</h3>
     <p className="py-4">If You Delete this item it can't be retrieve</p>
     <div className="modal-action">
-      <label onClick={()=>handleDelete(report._id)} htmlFor="report-modal" className=" btn btn-sm text-white bg-red-500 hover:bg-red-500">Delete</label>
+      <label onClick={()=>handleDelete(reported._id)} htmlFor="report-modal" className=" btn btn-sm text-white bg-red-500 hover:bg-red-500">Delete</label>
       <label htmlFor="report-modal" className="btn btn-sm text-white">Cancel</label>
     </div>
   </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useContext } from "react";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { userType } from "../../../types/data.types";
 import Seller from "./Seller";
 
 const Sellers = () => {
@@ -29,7 +30,7 @@ const Sellers = () => {
             </tr>
           </thead>
           <tbody>
-            {sellers?.map((seller, idx) => (
+            {sellers?.map((seller:userType, idx:number) => (
               <Seller key={idx} seller={seller} idx={idx} refetch={refetch} />
             ))}
           </tbody>

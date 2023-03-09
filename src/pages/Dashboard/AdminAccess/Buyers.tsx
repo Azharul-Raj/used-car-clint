@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { buyerType } from "../../../types/data.types";
+import { userType } from "../../../types/data.types";
 
 const Buyers = () => {
   const { logOut } = useContext(AuthContext);
@@ -64,7 +64,7 @@ const Buyers = () => {
           </tr>
         </thead>
         <tbody>
-          {buyers?.map((buyer:buyerType, idx:number) => (
+          {buyers?.map((buyer:userType, idx:number) => (
             <Buyer key={idx} idx={idx} buyer={buyer} refetch={refetch} />
           ))}
         </tbody>

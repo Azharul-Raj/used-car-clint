@@ -1,8 +1,9 @@
 import React from "react";
 import SellerDeleteModal from "./SellerDeleteModal";
 import { verifySeller } from "../../../Utilities/VerifySeller";
+import { sellerProp } from "../../../types/props.types";
 
-const Seller = ({ seller, idx, refetch }) => {
+const Seller = ({ seller, idx, refetch }:sellerProp) => {
   const { name, email, role,isVerified } = seller;
   // verify function here
 
