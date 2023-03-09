@@ -34,6 +34,7 @@ export type userType={
 }
 
 export type categoryType={
+  _id:string;
   name:string;
   image:string;
   category_id:string;

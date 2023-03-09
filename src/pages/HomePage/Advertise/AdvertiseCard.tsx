@@ -1,10 +1,12 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
-import { advertiseItemsType } from "../../../types/types.data";
+import { advertiseItemsType } from "../../../types/data.types";
 
+interface advertiseProps{
+  item:advertiseItemsType
+}
 
-
-const AdvertiseCard = ({ item }:{item:advertiseItemsType}) => {
+const AdvertiseCard = ({ item }:advertiseProps) => {
   const { image,category_id, name, desc } = item;
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
