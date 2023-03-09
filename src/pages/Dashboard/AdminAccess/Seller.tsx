@@ -1,10 +1,8 @@
-import React from "react";
-import SellerDeleteModal from "./SellerDeleteModal";
 import { verifySeller } from "../../../Utilities/VerifySeller";
 import { sellerProp } from "../../../types/props.types";
 
-const Seller = ({ seller, idx, refetch }:sellerProp) => {
-  const { name, email, role,isVerified } = seller;
+const Seller = ({ seller,setSellerId, idx, refetch }:sellerProp) => {
+  const { _id,name, email, role,isVerified } = seller;
   // verify function here
 
   const sellerVerify = () => {
@@ -28,6 +26,7 @@ const Seller = ({ seller, idx, refetch }:sellerProp) => {
         </td>
         <td>
           <label
+          onClick={()=>setSellerId(_id)}
             htmlFor="seller-delete-modal"
             className="btn btn-sm text-white bg-red-500 hover:bg-red-400"
           >
@@ -35,7 +34,6 @@ const Seller = ({ seller, idx, refetch }:sellerProp) => {
           </label>
         </td>
       </tr>
-      {seller && <SellerDeleteModal seller={seller} refetch={refetch} />}
     </>
   );
 };
