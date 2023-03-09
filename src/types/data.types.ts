@@ -33,6 +33,11 @@ export type userType={
   isVerified:boolean;
 }
 
+export type categoryType={
+  name:string;
+  image:string;
+  category_id:string;
+}
 export type bookModalType={
     bookItem:productType;
     setBookItem:React.Dispatch<React.SetStateAction<null>>;

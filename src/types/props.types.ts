@@ -22,3 +22,5 @@ export interface sellerProp{
     reported:productType;
     refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
   }
+
+ 
