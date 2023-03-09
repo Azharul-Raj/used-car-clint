@@ -20,6 +20,7 @@ export interface sellerProp extends Refetchable {
   seller: userType;
   idx:number;
   setSellerId:React.Dispatch<React.SetStateAction<string|null|any>>;
+  setSeller:React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface reportedProps extends Refetchable {
@@ -32,6 +33,7 @@ export interface buyerDeleteModalProps extends Refetchable {
 }
 export interface sellerDeleteModalProps extends Refetchable {
   sellerId:string;
+  seller:string;
   setSellerId:React.Dispatch<React.SetStateAction<string|null|any>>;
 }
 

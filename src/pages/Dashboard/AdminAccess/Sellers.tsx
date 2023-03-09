@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
+import { useState,useContext } from "react";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { userType } from "../../../types/data.types";
 import Seller from "./Seller";
+import SellerDeleteModal from "./SellerDeleteModal";
 
 const Sellers = () => {
   const { logOut } = useContext(AuthContext);
+  const [sellerId,setSellerId]=useState(null);
+  const [seller,setSeller]=useState("")
   const { data: sellers = [],isLoading,refetch } = useQuery({
     queryKey: ['sellers'],
     queryFn:()=>axios.get('/seller').then(res=>res.data)
@@ -31,11 +34,14 @@ const Sellers = () => {
           </thead>
           <tbody>
             {sellers?.map((seller:userType, idx:number) => (
-              <Seller key={idx} seller={seller} idx={idx} refetch={refetch} />
+              <Seller key={idx} seller={seller} idx={idx} setSellerId={setSellerId} setSeller={setSeller} refetch={refetch} />
             ))}
           </tbody>
         </table>
       </div>
+      {
+        sellerId && (<SellerDeleteModal sellerId={sellerId} setSellerId={setSellerId} refetch={refetch} seller={seller} />)
+      }
     </>
   );
 };

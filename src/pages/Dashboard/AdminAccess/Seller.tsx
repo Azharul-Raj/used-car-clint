@@ -1,7 +1,7 @@
 import { verifySeller } from "../../../Utilities/VerifySeller";
 import { sellerProp } from "../../../types/props.types";
 
-const Seller = ({ seller,setSellerId, idx, refetch }:sellerProp) => {
+const Seller = ({ seller,setSellerId,setSeller, idx, refetch }:sellerProp) => {
   const { _id,name, email, role,isVerified } = seller;
   // verify function here
 
