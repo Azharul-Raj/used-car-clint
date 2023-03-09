@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
+import { productProps, reportedProps } from '../../../types/props.types';
 import ReportDeleteModal from './ReportDeleteModal';
 
-const ReportCard = ({ report,refetch}) => {
-    const { _id, name, image, isSold, location } = report;
+const ReportCard = ({ reported,refetch}:reportedProps) => {
+    const { _id, name, image, isSold, location } = reported;
 
     return (
         <>
@@ -57,7 +58,7 @@ const ReportCard = ({ report,refetch}) => {
       </div>
             </div>
             {
-                report && <ReportDeleteModal refetch={refetch} report={report} />
+                reported && <ReportDeleteModal refetch={refetch} report={reported} />
             }
             </>
     );

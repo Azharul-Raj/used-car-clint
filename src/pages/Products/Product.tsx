@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 import { FaCar, FaMapMarkerAlt, FaThumbsUp, FaFlag } from "react-icons/fa";
 import { addReport } from "../../Utilities/AddReport";
 import { productType } from "../../types/data.types";
-import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "@tanstack/react-query";
+import { productProps } from "../../types/props.types";
 
-interface productProps{
-    product:productType;
-    setBookItem:React.Dispatch<React.SetStateAction<null>>;
-    refetch:<TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
-}
 
 const Product = ({ product, setBookItem, refetch }:productProps) => {
   const {
@@ -29,11 +24,11 @@ const Product = ({ product, setBookItem, refetch }:productProps) => {
     isVerified,
     isSold,
   } = product;
-  const handleBook = (item) => {
+  const handleBook = (item:productType) => {
     setBookItem(item);
   };
   // handle report function
-  const handleReport = (id) => {
+  const handleReport = (id:string) => {
     addReport(id, refetch);
   };
   return (

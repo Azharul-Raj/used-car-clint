@@ -25,6 +25,14 @@ export type productType = {
   isSold: boolean;
 };
 
+export type buyerType={
+  _id:string;
+  name:string;
+  role:string;
+  email:string;
+  isVerified:boolean;
+}
+
 export type bookModalType={
     bookItem:productType;
     setBookItem:React.Dispatch<React.SetStateAction<null>>;

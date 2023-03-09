@@ -1,10 +1,13 @@
 import React from "react";
+import { buyerType } from "../../../types/data.types";
+import { buyerProp } from "../../../types/props.types";
 import { makeSeller } from "../../../Utilities/MakeSeller";
-import BuyerDeleteModal from "./BuyerDeleteModal";
 
-const Buyer = ({ buyer, idx, refetch }) => {
+
+
+const Buyer = ({ buyer, idx, refetch }:buyerProp) => {
   const { name, email, role, _id } = buyer;
-  const handleMakeSeller = (id) => {
+  const handleMakeSeller = (id:string) => {
     makeSeller(id, refetch);
   }
   return (
@@ -24,7 +27,7 @@ const Buyer = ({ buyer, idx, refetch }) => {
           </label>
         </td>
       </tr>
-      {buyer && <BuyerDeleteModal buyer={buyer} refetch={refetch} />}
+      
     </>
   );
 };
