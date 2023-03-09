@@ -9,6 +9,7 @@ export interface productProps{
 
 export interface buyerProp{
     buyer:userType;
+    setBuyerId:React.Dispatch<React.SetStateAction<string|null|any>>;
     idx:number;
     refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
   }
@@ -23,4 +24,9 @@ export interface sellerProp{
     refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
   }
 
+  export interface buyerDeleteModalProps{
+    buyerId:string;
+    setBuyerId:React.Dispatch<React.SetStateAction<string|null|any>>;
+    refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
+  }
  

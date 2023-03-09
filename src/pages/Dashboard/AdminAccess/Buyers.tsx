@@ -6,13 +6,12 @@ import SpinnerMedium from "../../../components/SpinnerMedium";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { userType } from "../../../types/data.types";
+import BuyerDeleteModal from "./BuyerDeleteModal";
 
 const Buyers = () => {
   const { logOut } = useContext(AuthContext);
-  // const [buyers, setBuyers] = useState([]);
-  const [loading, setLoading] = useState(false);
   // for resetting the modal id
-  const [buyerId,setId]=useState(null);
+  const [buyerId,setBuyerId]=useState(null);
   // useEffect(() => {
     //   setLoading(true);
     //   fetch(`https://usedcarzone-server.vercel.app/identity/Buyer`, {
@@ -46,7 +45,7 @@ const Buyers = () => {
     }).then(res=>res.data)
   })
   // const buyers=data;
-  if (loading) {
+  if (isLoading) {
     return <SpinnerMedium />;
   }
   return (
@@ -65,12 +64,12 @@ const Buyers = () => {
         </thead>
         <tbody>
           {buyers?.map((buyer:userType, idx:number) => (
-            <Buyer key={idx} idx={idx} buyer={buyer} refetch={refetch} />
+            <Buyer key={idx} idx={idx} buyer={buyer} setBuyerId={setBuyerId} refetch={refetch} />
           ))}
         </tbody>
       </table>
     </div>
-    {/* {buyerId && <BuyerDeleteModal buyer={buyer} refetch={refetch} />} */}
+    {buyerId && <BuyerDeleteModal buyerId={buyerId} setBuyerId={setBuyerId} refetch={refetch} />}
     </>
   );
 };
