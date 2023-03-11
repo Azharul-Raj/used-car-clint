@@ -2,7 +2,7 @@ import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "@tanst
 import { User, UserCredential } from "firebase/auth";
 import { userType, productType } from "./data.types";
 
-interface Refetchable {
+export interface Refetchable {
   refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>;
 }
 

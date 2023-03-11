@@ -1,21 +1,18 @@
-// /product_delete/
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const ProductDelete = (id, func) => {
-    console.log(id);
-    fetch(`https://usedcarzone-server.vercel.app/product_delete/${id}`, {
-        method: "DELETE",
+export const productAdvertise = (id:string, func:any) => {
+    fetch(`https://usedcarzone-server.vercel.app/update/${id}`, {
+        method: "PUT",
         headers: {
             "content-type":"application/json"
         }
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             Swal.fire(
-                'Thank You!',
-  'Product DELETED successfully!',
+                'Congratulation!',
+  'Product advertise successfully!',
   'success'
             )
             func()

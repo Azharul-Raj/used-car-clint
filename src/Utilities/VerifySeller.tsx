@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const verifySeller = (name, func) => {
+export const verifySeller = (name:string, func:any) => {
     fetch(`https://usedcarzone-server.vercel.app/verify/${name}`, {
       method:"PUT"
   })
