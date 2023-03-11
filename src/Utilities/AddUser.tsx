@@ -1,6 +1,7 @@
+import { userType } from "../types/data.types"
 
 
-export const addUser = (user) => {
+export const addUser = (user:userType) => {
     fetch(`https://usedcarzone-server.vercel.app/users?email=${user?.email}`, {
         method:"POST",
         headers: {

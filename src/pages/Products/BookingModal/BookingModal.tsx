@@ -4,7 +4,7 @@ import { bookModalType } from "../../../types/data.types";
 import { bookCar } from "../../../Utilities/BookCar";
 
 const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
-  const { user } = useContext(AuthContext);
+  const data = useContext(AuthContext);
   const { _id, name, sellerName, brand, sale_price } = bookItem;
 
   const handleBooking = (e:React.ChangeEvent<HTMLInputElement>|any) => {
@@ -59,7 +59,8 @@ const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
                 type="text"
                 disabled
                 name="name"
-                defaultValue={user?.displayName}
+                // @ts-ignore
+                defaultValue={data?.user?.displayName}
                 className="input mb-4 border-gray-100 input-bordered input-md w-full"
                 id=""
               />
@@ -67,7 +68,8 @@ const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
                 type="text"
                 disabled
                 name="email"
-                defaultValue={user?.email}
+                // @ts-ignore
+                defaultValue={data?.user?.email}
                 className="input mb-4 border-gray-100 input-bordered input-md w-full"
                 id=""
               />
