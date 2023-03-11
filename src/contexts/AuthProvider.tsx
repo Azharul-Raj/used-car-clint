@@ -1,23 +1,24 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from "firebase/auth";
 import app from '../firebase/firebase.config';
 import toast from 'react-hot-toast';
 
 
+
 export const AuthContext = createContext();
 const auth = getAuth(app);
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }:{children:React.ReactNode}) => {
     // states
-    const [user, setUser] = useState();
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<User |null|any>();
+    const [loading, setLoading] = useState<boolean>(true);
 
     // gmail signIn 
-    const emailSignUp = (email, password) => {
+    const emailSignUp = (email:string, password:string) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     // email login
-    const emailLogin = (email, password) => {
+    const emailLogin = (email:string, password:string) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -30,8 +31,8 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
     // update user
-    const updateInfo = (name, image) => {
-        updateProfile(auth.currentUser, {
+    const updateInfo = (name:string, image:string) => {
+        updateProfile(auth.currentUser as User, {
             displayName: name,
             photoURL:image
         })
