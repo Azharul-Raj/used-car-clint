@@ -1,9 +1,10 @@
 import toast from "react-hot-toast"
 import { Navigate} from "react-router-dom"
 import Swal from "sweetalert2"
+import { productType } from "../types/data.types"
 
 
-export const addProduct = (product) => {
+export const addProduct = (product: productType) => {
     fetch('https://usedcarzone-server.vercel.app/add_product', {
         method: "POST",
         headers: {

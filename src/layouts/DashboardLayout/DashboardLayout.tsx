@@ -4,8 +4,8 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useRole from '../../hooks/useRole';
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext);
-  const [role] = useRole(user?.email);
+  const data = useContext(AuthContext);
+  const [role] = useRole(data?.user?.email);
     return (
       <div className="drawer z-10 drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />

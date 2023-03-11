@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 import { authContextProps } from '../types/props.types';
 
 
-
 export const AuthContext = createContext<authContextProps|null>(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }:{children:React.ReactNode}) => {
