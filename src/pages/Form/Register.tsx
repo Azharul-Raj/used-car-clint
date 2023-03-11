@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { useForm,SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+// @ts-ignore
 import googleLogo from "../../assets/google.svg";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { errorTypes } from "../../types/error.types";
 import { addUser } from "../../Utilities/AddUser";
 import { getToken } from "../../Utilities/GetToken";
 
@@ -45,7 +47,7 @@ const Register = () => {
         toast.success('SIGN IN SUCCESSFULLY')
         navigate('/')
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err:errorTypes) => toast.error(err.message));
   };
   // google signIn function
   const handleGoogleSignIn = () => {

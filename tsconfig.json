@@ -20,6 +20,18 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "resolve": {
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".json",
+      ".png",
+      ".svg",
+      ".jpg"
+    ]
+  },
   "include": [
     "src"
   ]

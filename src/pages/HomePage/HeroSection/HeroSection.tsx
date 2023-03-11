@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
 import { Link } from "react-router-dom";
+// @ts-ignore
 import car from "../../../assets/sports-car.jpg";
 
 const HeroSection = () => {

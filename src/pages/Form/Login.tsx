@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { useForm,SubmitHandler } from "react-hook-form";
 import toast, { Renderable, Toast, ValueFunction } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import googleLogo from '../../assets/google.svg';
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addUser } from "../../Utilities/AddUser";
 import { getToken } from "../../Utilities/GetToken";
-
+// @ts-ignore
+import googleLogo from '../../assets/google.svg'
 // type defined
 type FormValues={
   email:string;
