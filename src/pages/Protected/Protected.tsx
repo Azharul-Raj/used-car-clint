@@ -3,13 +3,14 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import SpinnerMedium from '../../components/SpinnerMedium';
 
-const Protected = ({ children }:{children:React.ReactNode|any}) => {
+const Protected = ({ children }:{children:React.ReactNode}) => {
     const location = useLocation();
-    const { user, loading } = useContext(AuthContext);
-    if (loading) {
+    const data = useContext(AuthContext);
+    
+    if (data?.loading) {
         return <SpinnerMedium/>
     }
-    if (user?.uid) {
+    if (data?.user?.uid) {
         return children;
     }
     return <Navigate to="/login" state={{ from: location }} replace />;

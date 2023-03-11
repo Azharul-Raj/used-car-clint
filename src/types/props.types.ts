@@ -1,5 +1,5 @@
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "@tanstack/react-query";
-import { User } from "firebase/auth";
+import { User, UserCredential } from "firebase/auth";
 import { userType, productType } from "./data.types";
 
 interface Refetchable {
@@ -42,9 +42,9 @@ export interface sellerDeleteModalProps extends Refetchable {
 export interface authContextProps{
   loading:boolean;
   user:User|null;
-  emailSignUp:(email:string,password:string)=>Promise<void>;
-  emailLogin:(email:string,password:string)=>Promise<void>;
-  googleSignIn:()=>Promise<void>;
+  emailSignUp:(email:string,password:string)=>Promise<UserCredential>;
+  emailLogin:(email:string,password:string)=>Promise<UserCredential>;
+  googleSignIn:()=>Promise<UserCredential>;
   updateInfo:(name:string,image:string)=>void;
   logOut:()=>void;
 }

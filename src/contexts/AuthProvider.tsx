@@ -1,16 +1,17 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User, UserCredential } from "firebase/auth";
 import app from '../firebase/firebase.config';
 import toast from 'react-hot-toast';
+import { authContextProps } from '../types/props.types';
 
 
 
-export const AuthContext = createContext();
+export const AuthContext = createContext<authContextProps|null>(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }:{children:React.ReactNode}) => {
     // states
     const [user, setUser] = useState<User |null|any>();
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState(true);
 
     // gmail signIn 
     const emailSignUp = (email:string, password:string) => {
