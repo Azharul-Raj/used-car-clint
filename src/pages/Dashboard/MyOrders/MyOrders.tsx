@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { orderType } from "../../../types/data.types";
 import Order from "./Order";
 
 const MyOrders = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const contextData = useContext(AuthContext);
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://usedcarzone-server.vercel.app/orders?email=${user?.email}`, {
+    fetch(`https://usedcarzone-server.vercel.app/orders?email=${contextData?.user?.email}`, {
       headers: {
         authorization: `Berar ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          return logOut();
+          return contextData?.logOut();
         }
         return res.json();
       })
@@ -25,7 +26,7 @@ const MyOrders = () => {
         setOrders(data);
         setLoading(false);
       });
-  }, [user?.email]);
+  }, [contextData?.user?.email]);
   if (loading) {
     return <SpinnerMedium />;
   }
@@ -44,7 +45,7 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {orders?.map((order) => (
+          {orders?.map((order:orderType) => (
             <Order key={order._id} order={order} />
           ))}
         </tbody>
@@ -59,3 +60,5 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+
+

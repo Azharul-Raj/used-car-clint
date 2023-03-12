@@ -1,19 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import { productAdvertise } from "../../../Utilities/ProductAdvertise";
 import { ProductDelete } from "../../../Utilities/ProductDelete";
 import { productProps } from "../../../types/props.types";
 
-const SingleProduct = ({ product,refetch }:productProps) => {
-    const { _id, name, image, location, isSold } = product;
-    const handleAdvertise = (id?:string) => {
-        productAdvertise(id,refetch)
-    }
-    // delete method here
-    const handleDelete = (id?:string) => {
-        ProductDelete(id,refetch)
-    }
+const SingleProduct = ({ product, refetch }: productProps) => {
+  const { _id, name, image, location, isSold } = product;
+  const handleAdvertise = (id?: string) => {
+    productAdvertise(id, refetch);
+  };
+  // delete method here
+  const handleDelete = (id?: string) => {
+    ProductDelete(id, refetch);
+  };
   return (
     <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
       <img
@@ -58,12 +56,18 @@ const SingleProduct = ({ product,refetch }:productProps) => {
           </div>
         </div>
         <div className="mt-5">
-          <button onClick={()=>handleDelete(_id)} className="w-full btn btn-sm text-white bg-red-600">
+          <button
+            onClick={() => handleDelete(_id)}
+            className="w-full btn btn-sm text-white bg-red-600"
+          >
             Delete
           </button>
         </div>
         <div className="mt-2">
-          <button onClick={()=>handleAdvertise(_id)} className="w-full btn btn-sm text-white bg-green-500">
+          <button
+            onClick={() => handleAdvertise(_id)}
+            className="w-full btn btn-sm text-white bg-green-500"
+          >
             Advertise
           </button>
         </div>

@@ -46,6 +46,21 @@ export type categoryType={
   image:string;
   category_id:string;
 }
+
+export type orderType={
+  _id?:string;
+  name:string;
+  email:string;
+  carId:string;
+  sellerName:string;
+  brand:string;
+  carName:string;
+  price:number;
+  phone:string;
+  meetingLocation:string;
+  isPaid:boolean;
+}
+
 export type bookModalType={
     bookItem:productType;
     setBookItem:React.Dispatch<React.SetStateAction<null>>;

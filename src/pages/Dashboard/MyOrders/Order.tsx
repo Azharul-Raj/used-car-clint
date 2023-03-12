@@ -1,7 +1,8 @@
 
 import { Link } from "react-router-dom";
+import { orderType } from "../../../types/data.types";
 
-const Order = ({ order }) => {
+const Order = ({ order }:{order:orderType}) => {
   const { _id, sellerName, carName, price, isPaid } = order;
   return (
     <tr>
