@@ -9,7 +9,7 @@ import { userType } from "../../../types/data.types";
 import BuyerDeleteModal from "./BuyerDeleteModal";
 
 const Buyers = () => {
-  const { logOut } = useContext(AuthContext);
+  // const { logOut } = useContext(AuthContext);
   // for resetting the modal id
   const [buyerId,setBuyerId]=useState(null);
   // useEffect(() => {

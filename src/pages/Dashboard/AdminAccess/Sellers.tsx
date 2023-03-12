@@ -8,7 +8,7 @@ import Seller from "./Seller";
 import SellerDeleteModal from "./SellerDeleteModal";
 
 const Sellers = () => {
-  const { logOut } = useContext(AuthContext);
+  // const { logOut } = useContext(AuthContext);
   const [sellerId,setSellerId]=useState(null);
   const [seller,setSeller]=useState("")
   const { data: sellers = [],isLoading,refetch } = useQuery({

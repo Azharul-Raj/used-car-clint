@@ -4,7 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 import { advertiseItemsType } from "../../../types/data.types";
 
 const Advertise = () => {
-  const { user } = useContext(AuthContext);
+  const data = useContext(AuthContext);
   const [advertiseItems, setAdvertiseItems] = useState<advertiseItemsType[]>([]);
   
   useEffect(() => {
@@ -17,7 +17,7 @@ const Advertise = () => {
       .then((data) => {
         setAdvertiseItems(data);
       });
-  }, [user?.email]);
+  }, [data?.user?.email]);
 
   return (
     <>

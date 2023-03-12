@@ -6,12 +6,12 @@ import SpinnerMedium from '../../components/SpinnerMedium';
 
 const SellerProtected = ({ children }:{children:React.ReactNode|any}) => {
     const location = useLocation();
-    const { user,loading } = useContext(AuthContext);
-    const [role, isLoading] = useRole(user?.email);
-    if (loading || isLoading) {
+    const data = useContext(AuthContext);
+    const [role, isLoading] = useRole(data?.user?.email);
+    if (data?.loading || isLoading) {
         return <SpinnerMedium/>
     }
-    if (user?.uid && role==='Seller') {
+    if (data?.user?.uid && role==='Seller') {
         return children;
     }
     return <Navigate to='*'state={{from:location}} replace/>

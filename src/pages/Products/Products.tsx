@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import  { useState } from "react";
 import {  useParams } from "react-router-dom";
 import SpinnerMedium from "../../components/SpinnerMedium";
 import Product from "./Product";
