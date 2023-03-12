@@ -31,7 +31,7 @@ const AuthProvider = ({ children }:{children:React.ReactNode}) => {
         return () => unsubscribe();
     }, [])
     // update user
-    const updateInfo = (name:string, image:string) => {
+    const updateInfo = (name:string, image?:string) => {
         updateProfile(auth.currentUser as User, {
             displayName: name,
             photoURL:image
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }:{children:React.ReactNode}) => {
     const logOut = () => {
         signOut(auth).then(()=>{}).catch(err=>toast.error(err.message))
     }
-    const userInfo={loading,user, emailSignUp,emailLogin,googleSignIn, updateInfo,logOut}
+    const userInfo:authContextProps={loading,user, emailSignUp,emailLogin,googleSignIn, updateInfo,logOut}
     return (
         <AuthContext.Provider value={userInfo}>
             {

@@ -19,7 +19,8 @@ type FormValues={
 
 
 const Register = () => {
-  const { emailSignUp, updateInfo, googleSignIn } = useContext(AuthContext);
+  // const { emailSignUp, updateInfo, googleSignIn } = useContext(AuthContext);
+  const contextData = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -32,10 +33,10 @@ const Register = () => {
     const role = data.role;
     const email = data.email;
     const password = data.password;
-    emailSignUp(email, password)
+    contextData?.emailSignUp(email, password)
       .then((result:any) => {
         const profile = result.user;
-        updateInfo(name);
+        contextData?.updateInfo(name);
         const userInfo = {
           name,
           role,
@@ -51,7 +52,7 @@ const Register = () => {
   };
   // google signIn function
   const handleGoogleSignIn = () => {
-    googleSignIn().then((result:any) => {
+    contextData?.googleSignIn().then((result:any) => {
       const profile = result.user;
       const userInfo = {
         name: profile.displayName,

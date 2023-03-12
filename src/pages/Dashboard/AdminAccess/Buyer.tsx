@@ -7,7 +7,7 @@ import { makeSeller } from "../../../Utilities/MakeSeller";
 
 const Buyer = ({ buyer,setBuyerId, idx, refetch }:buyerProp) => {
   const { name, email, role, _id } = buyer;
-  const handleMakeSeller = (id:string) => {
+  const handleMakeSeller = (id?:string) => {
     makeSeller(id, refetch);
   }
   return (

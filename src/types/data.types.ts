@@ -26,7 +26,7 @@ export type productType = {
 };
 
 export type userType={
-  _id:string;
+  _id?:string;
   name:string;
   role:string;
   email:string;

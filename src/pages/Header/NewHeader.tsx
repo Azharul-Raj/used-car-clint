@@ -22,7 +22,7 @@ export default function NewHeader() {
   // }
 
   return (
-    <nav className='px-4 py-2 lg:py-0 bg-base shadow flex md:items-center justify-between'>
+    <nav className='px-4 py-2 lg:py-2 bg-base shadow flex md:items-center justify-between'>
       {/* logo */}
       <Link to="/" className="z-20">
         <h4 className='text-xl font-bold'>UsedCarZone</h4>

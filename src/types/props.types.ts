@@ -45,6 +45,6 @@ export interface authContextProps{
   emailSignUp:(email:string,password:string)=>Promise<UserCredential>;
   emailLogin:(email:string,password:string)=>Promise<UserCredential>;
   googleSignIn:()=>Promise<UserCredential>;
-  updateInfo:(name:string,image:string)=>void;
+  updateInfo:(name:string,image?:string)=>void;
   logOut:()=>void;
 }

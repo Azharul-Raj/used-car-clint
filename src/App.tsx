@@ -23,6 +23,7 @@ import {
   Register,
   Login,
 } from "./imports/App.imports";
+import './App.css'
 
 axios.defaults.baseURL = "https://usedcarzone-server.vercel.app";
 function App() {

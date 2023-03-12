@@ -7,6 +7,7 @@ import { addUser } from "../../Utilities/AddUser";
 import { getToken } from "../../Utilities/GetToken";
 // @ts-ignore
 import googleLogo from '../../assets/google.svg'
+import { userType } from "../../types/data.types";
 // type defined
 type FormValues={
   email:string;
@@ -21,7 +22,8 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const { emailLogin, googleSignIn,user } = useContext(AuthContext);
+  // const { emailLogin, googleSignIn,user } = useContext(AuthContext);
+  const contextData = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -31,7 +33,7 @@ const Login = () => {
   const handleLogin:SubmitHandler<FormValues> = (data: FormValues) => {
     const email = data.email;
     const password = data.password;
-    emailLogin(email, password)
+    contextData?.emailLogin(email, password)
       .then((result: { user: any; }) => {
         const profile = result.user;
         getToken(profile.email)
@@ -48,11 +50,11 @@ const Login = () => {
   };
     // google signIn function
     const handleGoogleSignIn = () => {
-      googleSignIn()
+      contextData?.googleSignIn()
         .then((result: { user: any; }) => {
           const profile = result.user;
           toast.success('Sign In Successfully');
-          const userInfo = {
+          const userInfo:userType = {
             name: profile.displayName,
             role:"Buyer",
             email: profile.email,
@@ -63,10 +65,10 @@ const Login = () => {
       })
   }
   useEffect(() => {
-    if (user) {
+    if (contextData?.user) {
       navigate(from,{replace:true})
     }
-  },[user,from,navigate])
+  },[contextData?.user,from,navigate])
   return (
     <div className="flex justify-center items-center my-12">
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
