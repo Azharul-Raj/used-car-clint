@@ -71,6 +71,19 @@ export type paymentType= {
   buyerEmail: string;
 }
 
+export type carInfo= {
+  name: string;
+  email: string;
+  carId?: string;
+  sellerName: string;
+  brand: string;
+  carName: string;
+  price: number;
+  phone: string;
+  meetingLocation: string;
+}
+
+
 export type bookModalType={
     bookItem:productType;
     setBookItem:React.Dispatch<React.SetStateAction<null>>;

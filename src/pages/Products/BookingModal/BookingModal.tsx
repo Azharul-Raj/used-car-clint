@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
-import { bookModalType } from "../../../types/data.types";
+import { bookModalType, carInfo } from "../../../types/data.types";
 import { bookCar } from "../../../Utilities/BookCar";
 
 const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
@@ -17,7 +17,7 @@ const BookingModal = ({ bookItem,setBookItem }:bookModalType) => {
   const price = parseFloat(strPrice.split(" ")[0]);
   const phone = target.elements.namedItem("phone").value;
   const location = target.elements.namedItem("location").value;
-    const bookingInfo = {
+    const bookingInfo:carInfo = {
       name,
       email,
       carId: _id,

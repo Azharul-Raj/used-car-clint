@@ -1,6 +1,5 @@
 import {  useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Header.css';
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai';
 import { UtilsFunc } from '../../components/UtilsFunc';
 
