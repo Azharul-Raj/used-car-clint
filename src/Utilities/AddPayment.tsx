@@ -1,10 +1,10 @@
 interface infoType {
   buyerName: string;
-  orderID: string;
+  orderID: string | undefined;
   productID: string;
   productName: string;
   sellerName: string;
-  transactionID: string;
+  transactionID: any;
   buyerEmail: string;
 }
 

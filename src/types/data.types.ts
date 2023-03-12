@@ -61,6 +61,16 @@ export type orderType={
   isPaid:boolean;
 }
 
+export type paymentType= {
+  buyerName: string;
+  orderID: string | undefined;
+  productID: string;
+  productName: string;
+  sellerName: string;
+  transactionID: any;
+  buyerEmail: string;
+}
+
 export type bookModalType={
     bookItem:productType;
     setBookItem:React.Dispatch<React.SetStateAction<null>>;

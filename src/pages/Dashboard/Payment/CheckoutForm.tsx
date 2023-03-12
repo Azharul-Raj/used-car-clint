@@ -1,11 +1,13 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { Stripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import SmallSpinner from "../../../components/SmallSpinner";
+import { orderType, paymentType } from "../../../types/data.types";
 import { addPayment } from "../../../Utilities/AddPayment";
 
-const CheckoutForm = ({ order }) => {
+const CheckoutForm = ({ order }:{order:orderType}) => {
   const { _id,carId, sellerName, price,carName, name, email } = order;
   // states
   const [processing, setProcessing] = useState(false);
@@ -24,9 +26,9 @@ const CheckoutForm = ({ order }) => {
     .catch(err=>console.log(err))
   }, [price]);
   
-  const stripe = useStripe();
+  const stripe:Stripe|any = useStripe();
   const elements = useElements();
-  const handlePayment = async (e) => {
+  const handlePayment = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setProcessing(true);
     if (elements == null) {
@@ -59,7 +61,7 @@ const CheckoutForm = ({ order }) => {
       );
       console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
-      const payment = {
+      const payment:paymentType = {
         buyerName: name,
         orderID: _id,
         productID:carId,
