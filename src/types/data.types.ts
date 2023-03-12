@@ -18,7 +18,7 @@ export type productType = {
   sellerName: string;
   image: string;
   brand: string;
-  post_date: string;
+  poste_date: string;
   original_price: number;
   sale_price: number;
   used: number;

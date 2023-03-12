@@ -2,7 +2,7 @@
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const ProductDelete = (id:string, func:any) => {
+export const ProductDelete = (id:string|any, func:any) => {
     fetch(`https://usedcarzone-server.vercel.app/product_delete/${id}`, {
         method: "DELETE",
         headers: {

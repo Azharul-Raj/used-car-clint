@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { FaCar, FaMapMarkerAlt, FaThumbsUp, FaFlag } from "react-icons/fa";
 import { addReport } from "../../Utilities/AddReport";
 import { productType } from "../../types/data.types";
-import { productProps } from "../../types/props.types";
+import { productCardProps } from "../../types/props.types";
 
 
-const Product = ({ product, setBookItem, refetch }:productProps) => {
+const Product = ({ product, setBookItem, refetch }:productCardProps) => {
   const {
     _id,
     name,
@@ -27,7 +27,7 @@ const Product = ({ product, setBookItem, refetch }:productProps) => {
     setBookItem(item);
   };
   // handle report function
-  const handleReport = (id:string) => {
+  const handleReport = (id?:string) => {
     addReport(id, refetch);
   };
   return (

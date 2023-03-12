@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import { productAdvertise } from "../../../Utilities/ProductAdvertise";
 import { ProductDelete } from "../../../Utilities/ProductDelete";
+import { productProps } from "../../../types/props.types";
 
-const SingleProduct = ({ product,refetch }) => {
+const SingleProduct = ({ product,refetch }:productProps) => {
     const { _id, name, image, location, isSold } = product;
-    const handleAdvertise = (id) => {
+    const handleAdvertise = (id?:string) => {
         productAdvertise(id,refetch)
     }
     // delete method here
-    const handleDelete = (id) => {
+    const handleDelete = (id?:string) => {
         ProductDelete(id,refetch)
     }
   return (

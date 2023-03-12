@@ -1,22 +1,23 @@
-/* eslint-disable no-restricted-globals */
-import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import SingleProduct from "./SingleProduct";
+import { productType } from "../../../types/data.types";
 
 const MyProducts = () => {
-  const { user } = useContext(AuthContext);
+  const contextData = useContext(AuthContext);
   const {
     data: myproducts = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["myproducts", user?.displayName,onload],
+    queryKey: ["myproducts", contextData?.user?.displayName, onload],
     queryFn: async () => {
-      const res = await axios.get(`my_products/${user?.displayName}`);
+      const res = await axios.get(
+        `my_products/${contextData?.user?.displayName}`
+      );
       return res.data;
     },
   });
@@ -27,7 +28,7 @@ const MyProducts = () => {
     <>
       {myproducts?.length ? (
         <div className="grid grid-cols-1 my-6 lg:grid-cols-2 gap-4 place-items-center">
-          {myproducts.map((product) => (
+          {myproducts.map((product: productType) => (
             <SingleProduct
               key={product._id}
               product={product}

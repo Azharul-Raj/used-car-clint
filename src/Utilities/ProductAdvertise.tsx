@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const productAdvertise = (id:string, func:any) => {
+export const productAdvertise = (id:string|any, func:any) => {
     fetch(`https://usedcarzone-server.vercel.app/update/${id}`, {
         method: "PUT",
         headers: {

@@ -18,7 +18,7 @@ const AddProduct = () => {
     const original_price = data.original_price;
     const sale_price = data.sale_price;
     const used = data.used;
-    const post_date = new Date().toDateString();
+    const poste_date = new Date().toDateString();
     const isVerified = false;
     const condition = data.condition;
     const phone = data.phone;
@@ -33,7 +33,7 @@ const AddProduct = () => {
       original_price,
       sale_price,
       used,
-      post_date,
+      poste_date,
       isVerified,
       condition,
       phone,

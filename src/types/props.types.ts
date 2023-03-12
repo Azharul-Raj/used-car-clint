@@ -6,7 +6,7 @@ export interface Refetchable {
   refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>;
 }
 
-export interface productProps extends Refetchable {
+export interface productCardProps extends Refetchable {
   product: productType;
   setBookItem: React.Dispatch<React.SetStateAction<productType|any>>;
 }
@@ -24,8 +24,8 @@ export interface sellerProp extends Refetchable {
   setSeller:React.Dispatch<React.SetStateAction<string>>;
 }
 
-export interface reportedProps extends Refetchable {
-  reported: productType;
+export interface productProps extends Refetchable {
+  product: productType;
 }
 
 export interface buyerDeleteModalProps extends Refetchable {
