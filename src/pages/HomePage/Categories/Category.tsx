@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { categoryType } from "../../../types/data.types";
 type categoryProps={

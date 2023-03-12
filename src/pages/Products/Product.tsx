@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCar, FaMapMarkerAlt, FaThumbsUp, FaFlag } from "react-icons/fa";
 import { addReport } from "../../Utilities/AddReport";

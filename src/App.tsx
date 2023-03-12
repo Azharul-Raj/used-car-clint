@@ -29,8 +29,6 @@ axios.defaults.baseURL = "https://usedcarzone-server.vercel.app";
 function App() {
   return (
     <div className="App">
-      {/* <RouterProvider router={router}>        
-        </RouterProvider> */}
       <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/" element={<HomePage />} />,

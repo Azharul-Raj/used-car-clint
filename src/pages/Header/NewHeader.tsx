@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import {  useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai';
@@ -17,9 +17,6 @@ export default function NewHeader() {
   if(role&&role==="Admin"){
     location="/dashboard/all_sellers";
   }
-  // else{
-  //   location="/dashboard"
-  // }
 
   return (
     <nav className='px-4 py-2 lg:py-2 bg-base shadow flex md:items-center justify-between'>
@@ -53,7 +50,6 @@ export default function NewHeader() {
         </>
     }
      </ul>
-      {/* <div className=""></div> */}
     </nav>
   )
 }

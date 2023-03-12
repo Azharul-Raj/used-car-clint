@@ -6,23 +6,30 @@ export type advertiseItemsType = {
   desc: string;
 };
 
+// export type productDataType={
+
+// }
+
 export type productType = {
-  _id: string;
+  _id?: string;
+  category_id:number|any;
   name: string;
   isReported: boolean;
   sellerName: string;
   image: string;
   brand: string;
-  poste_date: string;
+  post_date: string;
   original_price: number;
   sale_price: number;
   used: number;
   location: string;
   condition: string;
   desc: string;
+  phone:string;
   isVerified: boolean;
   isPaid: boolean;
   isSold: boolean;
+  seller_email?:string;
 };
 
 export type userType={

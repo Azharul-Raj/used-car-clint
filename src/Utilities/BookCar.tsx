@@ -1,4 +1,3 @@
-import { Interface } from "readline";
 import Swal from "sweetalert2";
 
 interface carInfo {

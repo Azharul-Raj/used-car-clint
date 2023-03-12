@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useForm,SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,7 +28,6 @@ const Register = () => {
     formState: { errors },
   } = useForm<FormValues>();
   const handleRegister:SubmitHandler<FormValues> = (data:FormValues) => {
-    console.log(data);
     const name = data.name;
     const role = data.role;
     const email = data.email;
