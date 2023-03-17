@@ -27,11 +27,20 @@ import './App.css';
 /*--------------------------------
 AXIOS RESPONSE INTERCEPTORS
 ---------------------------.....*/
-
+//req
+axios.interceptors.request.use((config)=>{
+  return config;
+},(err)=>{
+  console.log("from req error",err);
+  
+})
+// response
 axios.interceptors.response.use((res)=>{
+  console.log("from res",res);
+  
   return res;
 },(err)=>{
-  console.log(err);
+  console.log("From interceptors",err);
   
 })
 /*--------------------------------

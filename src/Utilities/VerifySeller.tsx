@@ -1,3 +1,4 @@
+import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
@@ -13,3 +14,4 @@ export const verifySeller = (name:string, func:any) => {
     })
     .catch((err) => toast.error(err.message));
 };
+

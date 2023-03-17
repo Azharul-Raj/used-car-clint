@@ -1,23 +1,16 @@
 // /product_delete/
+import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const ProductDelete = (id:string|any, func:any) => {
-    fetch(`https://usedcarzone-server.vercel.app/product_delete/${id}`, {
-        method: "DELETE",
-        headers: {
+export const ProductDelete = (id: string | any, func: any) => {
+    axios.delete(`https://usedcarzone-server.vercel.app/product_delete/${id}`,{
+        headers:{
             "content-type":"application/json"
         }
+    }).then(res=>{
+        Swal.fire("Thank You!", "Product DELETED successfully!", "success");
+        func();
     })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            Swal.fire(
-                'Thank You!',
-  'Product DELETED successfully!',
-  'success'
-            )
-            func()
-        })
-    .catch(err=>toast.error(err.message))
-}
+    .catch((err) => toast.error(err.message));
+};
