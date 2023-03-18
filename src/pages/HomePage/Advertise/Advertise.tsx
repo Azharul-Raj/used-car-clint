@@ -7,19 +7,6 @@ import axios from "axios";
 
 const Advertise = () => {
   const data = useContext(AuthContext);
-  // const [advertiseItems, setAdvertiseItems] = useState<advertiseItemsType[]>([]);
-  
-  // useEffect(() => {
-  //   fetch(`https://usedcarzone-server.vercel.app/advertise`, {
-  //     headers: {
-  //       authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAdvertiseItems(data);
-  //     });
-  // }, [data?.user?.email]);
   const {data:advertiseItems=[]}=useQuery({
     queryKey:["advertise"],
     queryFn:()=>axios.get("/advertise",{
@@ -27,9 +14,11 @@ const Advertise = () => {
               "content-type":"application/json",
               authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-    }).then(res=>res.data)
+    }).then(res=>res?.data)
   })
 
+  console.log(advertiseItems);
+  
   return (
     <>
       {advertiseItems?.length ? (
