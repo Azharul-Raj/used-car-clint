@@ -7,20 +7,6 @@ const useRole = (email:string|any) => {
   // states
   const [role, setRole] = useState("User");
   const [isLoading, setIsLoading] = useState(true);
-  //   const {data,isLoading:loading} = useQuery({
-  //     queryKey: ["user"],
-  //     queryFn: () =>{email &&
-  //       axios
-  //         .get(`/user/role/${email}`,{
-  //             headers:{
-  //                 "content-type":"application/json"
-  //             }
-  //         })
-  //         .then((res) => res.data)
-  //         .catch((err) => toast.error(err.message))},
-  //   });
-  //   console.log(data?.position);
-  //   console.log(loading);
   useEffect(() => {
     if (email) {
       axios
@@ -35,12 +21,6 @@ const useRole = (email:string|any) => {
           setRole(res.data.position)
           setIsLoading(false);
         })
-          // fetch(`https://usedcarzone-server.vercel.app/user/role/${email}`)
-          //     .then(res => res.json())
-          //     .then(data => {
-          //         setRole(data.position)
-          //         setIsLoading(false);
-              // })
         .catch((err) => toast.error(err.message));
     }
   }, [email]);

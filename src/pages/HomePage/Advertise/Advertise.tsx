@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+// import { useContext, useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { advertiseItemsType } from "../../../types/data.types";
@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Advertise = () => {
-  const data = useContext(AuthContext);
+  // const data = useContext(AuthContext);
   const {data:advertiseItems=[]}=useQuery({
     queryKey:["advertise"],
     queryFn:()=>axios.get("/advertise",{
@@ -17,7 +17,6 @@ const Advertise = () => {
     }).then(res=>res?.data)
   })
 
-  console.log(advertiseItems);
   
   return (
     <>

@@ -1,4 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { orderType } from "../../../types/data.types";
@@ -6,29 +9,20 @@ import Order from "./Order";
 
 const MyOrders = () => {
   const contextData = useContext(AuthContext);
-
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    fetch(`https://usedcarzone-server.vercel.app/orders?email=${contextData?.user?.email}`, {
-      headers: {
+  const {data:orders=[],isLoading,isError}=useQuery({
+    queryKey:["order"],
+    queryFn:()=>axios.get(`/orders?email=${contextData?.user?.email}`,{
+      headers:{
+        "content-type":"application/json",
         authorization: `Berar ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          return contextData?.logOut();
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setOrders(data);
-        setLoading(false);
-      });
-  }, [contextData?.user?.email]);
-  if (loading) {
+      }
+    }).then(res=>res.data)
+  })
+  if (isLoading) {
     return <SpinnerMedium />;
+  }
+  if(isError){
+    toast.error("Something went wrong")
   }
 
   return (

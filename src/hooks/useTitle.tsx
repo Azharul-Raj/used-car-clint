@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useTitle = (title) => {
+const useTitle = (title:string|any) => {
     useEffect(() => {
         document.title=`${title} -UsedCarZone`
     },[title])
