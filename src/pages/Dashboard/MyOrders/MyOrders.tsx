@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import SpinnerMedium from "../../../components/SpinnerMedium";
 import { AuthContext } from "../../../contexts/AuthProvider";

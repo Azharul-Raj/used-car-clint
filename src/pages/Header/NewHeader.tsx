@@ -2,7 +2,7 @@ import {  useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai';
 import { UtilsFunc } from '../../components/UtilsFunc';
-
+import "./Header.css"
 
 export default function NewHeader() {
   const [isOpen,setIsOpen]=useState(false);
@@ -18,15 +18,16 @@ export default function NewHeader() {
   }
 
   return (
-    <nav className='px-4 py-2 lg:py-2 bg-base shadow flex md:items-center justify-between'>
+    <nav className='py-2 lg:py-2 bg-base shadow flex md:items-center justify-between px-[5%]'>
       {/* logo */}
       <Link to="/" className="z-20">
         <h4 className='text-xl font-bold'>UsedCarZone</h4>
       </Link>
       <span onClick={()=>setIsOpen(!isOpen)} className='block text-3xl cursor-pointer lg:hidden text-gray-100'>
-        {isOpen? <AiOutlineClose/>:<AiOutlineMenu/>}
+        {/* {isOpen? <AiOutlineClose/>:<AiOutlineMenu/>} */}
+        <div className={`${isOpen?"active-nav":"nav"}`}></div>
       </span>
-     <ul className={`flex items-center flex-col lg:flex-row lg:justify-between ${isOpen? "opacity-100 top-12 pb-5":"opacity-0 -top-96"}  transition-all ease-in duration-500 ${pathname==='/dashboard'? 'z-50':"z-[1]"}  absolute bg-[#2a303c] w-full left-0 lg:static lg:z-auto lg:w-auto lg:opacity-100 lg:py-0`}>
+     <ul className={`flex items-center flex-col lg:flex-row lg:justify-between ${isOpen? "translate-y-[20%] md:translate-y-1/2 pb-5":"-translate-y-[110%] lg:translate-y-0"}  transition-all ease-in duration-500 ${pathname==='/dashboard'? 'z-50':"z-[1]"}  absolute bg-[#2a303c] w-full left-0 lg:static lg:z-auto lg:w-auto lg:opacity-100 lg:py-0`}>
       
           <li className='mx-4 my-2' >
             <Link to="" onClick={()=>setIsOpen(false)} className='text-md hover:tex-cyan-500 duration-500 text-gray-200'>Home</Link>

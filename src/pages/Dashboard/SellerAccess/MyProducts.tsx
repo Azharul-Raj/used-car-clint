@@ -13,7 +13,7 @@ const MyProducts = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["myproducts", contextData?.user?.displayName, onload],
+    queryKey: ["myproducts", contextData?.user?.displayName],
     queryFn: async () => {
       const res = await axios.get(
         `my_products/${contextData?.user?.displayName}`

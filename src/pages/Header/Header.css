@@ -1,0 +1,36 @@
+.nav{
+    background-color: #fff;
+}
+.nav,
+.active-nav {
+    margin-top: 8px;
+  height: 3px;
+  width: 30px;
+  position: relative;
+  z-index: 10;
+  transition: all 0.5s ease-in;
+}
+
+.nav::before,
+.nav::after,
+.active-nav::before,
+.active-nav::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 30px;
+  background: #fff;
+  transition: all 0.5s ease-in;
+}
+.nav::before {
+  transform: translateY(-10px);
+}
+.nav::after {
+  transform: translateY(10px);
+}
+.active-nav::before{
+    transform: rotate(45deg);
+}
+.active-nav::after{
+    transform: rotate(-45deg);
+}

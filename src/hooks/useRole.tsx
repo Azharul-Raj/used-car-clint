@@ -17,8 +17,7 @@ const useRole = (email:string|any) => {
           },
         })
         .then((res) =>{
-          console.log("from use role",res.data);
-          setRole(res.data.position)
+          setRole(res.data?.position)
           setIsLoading(false);
         })
         .catch((err) => toast.error(err.message));
