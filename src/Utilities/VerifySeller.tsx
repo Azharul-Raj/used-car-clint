@@ -2,16 +2,24 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const verifySeller = (name:string, func:any) => {
-    fetch(`https://usedcarzone-server.vercel.app/verify/${name}`, {
-      method:"PUT"
-  })
-    .then((res) => res.json())
-        .then((data) => {
-        console.log(data);
+// export const verifySeller = (name:string, func:any) => {
+//     fetch(`https://usedcarzone-server.vercel.app/verify/${name}`, {
+//       method:"PUT"
+//   })
+//     .then((res) => res.json())
+//         .then((data) => {
+//         console.log(data);
+//       Swal.fire("Verified!", "success");
+//       func();
+//     })
+//     .catch((err) => toast.error(err.message));
+// };
+
+export const verifySeller=(name:string,func:any)=>{
+  axios.put(`/verify/${name}`).then(res=>{
+    if(res?.data)
       Swal.fire("Verified!", "success");
       func();
-    })
-    .catch((err) => toast.error(err.message));
-};
-
+    
+  }).catch((err) => toast.error(err.message));
+}

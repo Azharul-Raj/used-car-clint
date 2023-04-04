@@ -1,10 +1,13 @@
+import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 export const makeSeller = (id:string|any, func:any) => {
-  fetch(`https://usedcarzone-server.vercel.app/make_seller/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
+  // fetch(`https://usedcarzone-server.vercel.app/make_seller/${id}`)
+  //   .then((res) => res.json())
+  axios.put(`/make_seller/${id}`)
+    .then((res) => {
+      if(res?.data)
       Swal.fire(
         "Congratulation!",
         "Product advertise successfully!",

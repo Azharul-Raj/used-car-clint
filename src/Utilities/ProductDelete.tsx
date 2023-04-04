@@ -9,6 +9,7 @@ export const ProductDelete = (id: string | any, func: any) => {
             "content-type":"application/json"
         }
     }).then(res=>{
+        if(res?.data)
         Swal.fire("Thank You!", "Product DELETED successfully!", "success");
         func();
     })

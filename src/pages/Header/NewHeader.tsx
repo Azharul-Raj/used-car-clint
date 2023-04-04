@@ -16,7 +16,7 @@ export default function NewHeader() {
   if(role&&role==="Admin"){
     location="/dashboard/all_sellers";
   }
-
+console.log(user)
   return (
     <nav className='py-2 lg:py-2 bg-base shadow flex md:items-center justify-between px-[5%]'>
       {/* logo */}
